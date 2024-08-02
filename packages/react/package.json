@@ -8,9 +8,18 @@
   "type": "module",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "node server.js --dev",
+    "start": "node server.js",
+    "build": "vite build",
+    "lint": "eslint . --ext .js,.jsx --fix",
+    "test": "node --test"
   },
   "dependencies": {
+    "@fastify/vite": "^6.0.7",
+    "@vitejs/plugin-react": "^4.3.1",
+    "commander": "^12.1.0",
+    "fastify": "^4.28.1",
+    "get-port": "^7.1.0",
     "pino": "^9.3.2",
     "vite": "^5.3.5"
   },
