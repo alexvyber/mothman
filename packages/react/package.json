@@ -8,7 +8,8 @@
   "type": "module",
   "main": "index.js",
   "scripts": {
-    "dev": "node server.js --dev",
+    "dev": "node --import=tsx server.ts --dev",
+    "cli": "node --import=tsx cli.ts serve -- --dev",
     "start": "node server.js",
     "build": "vite build",
     "lint": "eslint . --ext .js,.jsx --fix",

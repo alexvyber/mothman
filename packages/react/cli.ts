@@ -1,6 +1,5 @@
-import { serve } from "./serve.js"
 import { Command } from "commander"
-import { devRun, main } from "./server.js"
+import { serve } from "./serve.js"
 
 const program = new Command("spoon")
 
@@ -11,7 +10,7 @@ program
   .description("start developing")
   .option("-h, --host [string]", "host to serve the application")
   .option("-p, --port [number]", "port to serve the application", strToInt)
-  .action(devRun)
+  .action(serve)
 
 program.parse(process.argv)
 

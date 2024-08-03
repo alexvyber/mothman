@@ -1,10 +1,7 @@
-import { resolve, dirname } from "node:path"
-import { fileURLToPath } from "node:url"
+import { resolve } from "node:path"
 import viteReact from "@vitejs/plugin-react"
 
-const path = fileURLToPath(import.meta.url)
-const root = resolve(dirname(path), "app")
-
+const root = resolve(import.meta.dirname, "app")
 const plugins = [viteReact({ jsxRuntime: "classic" })]
 
 export default {
