@@ -1,7 +1,7 @@
 import Fastify from "fastify"
 import FastifyVite from "@fastify/vite"
 import getPort, { portNumbers } from "get-port"
-import { openBrowser } from "./open-browser/open-browser"
+import { watch } from "node:fs/promises"
 
 export async function main() {
   const server = Fastify()
@@ -36,7 +36,13 @@ export async function serve(config?: any) {
 
   server.listen({ port }, () => {
     const url = `http://localhost:${port}`
-    openBrowser(url)
+    // openBrowser(url)
     console.log(`server started on ${url}`)
   })
+
+  for await (const file of watch(`${import.meta.dirname}`, { recursive: true, persistent: true })) {
+    if (file.filename?.includes(".stories.")) {
+      // do reload stufff
+    }
+  }
 }
