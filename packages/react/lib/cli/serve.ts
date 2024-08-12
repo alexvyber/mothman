@@ -2,12 +2,14 @@ import Fastify from "fastify"
 import FastifyVite from "@fastify/vite"
 import getPort, { portNumbers } from "get-port"
 import { watch } from "node:fs/promises"
+import { openBrowser } from "./open-browser"
+import { resolve } from "node:path"
 
 export async function main() {
   const server = Fastify()
 
   await server.register(FastifyVite, {
-    root: import.meta.url,
+    root: resolve(import.meta.dirname, "../../"),
     dev: true,
     spa: true,
   })
@@ -36,7 +38,7 @@ export async function serve(config?: any) {
 
   server.listen({ port }, () => {
     const url = `http://localhost:${port}`
-    // openBrowser(url)
+    openBrowser(url)
     console.log(`server started on ${url}`)
   })
 
