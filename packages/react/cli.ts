@@ -1,7 +1,7 @@
 import { Command } from "commander"
 import { serve } from "./serve.js"
 
-const program = new Command("spoon")
+const program = new Command("mothman")
 
 program.showHelpAfterError().showSuggestionAfterError()
 

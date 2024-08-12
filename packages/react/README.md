@@ -1,3 +1,3 @@
-# Spoon 
+# mothman 
 
-Spoon is an environment to develop, test, and share your React components, probaly using some AI agents... You know?
+mothman is an environment to develop, test, and share your React components, probaly using some AI agents... You know?
