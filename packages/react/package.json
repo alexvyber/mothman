@@ -7,15 +7,20 @@
   "author": "",
   "type": "module",
   "main": "index.js",
+  "types": "./lib/app/exports.ts",
+  "bin": {
+    "moth": "./bin/cli.js"
+  },
+  "files": ["bin"],
   "scripts": {
-    "dev": "node --import=tsx server.ts --dev",
-    "cli": "node --import=tsx cli.ts serve -- --dev",
-    "start": "node server.js",
     "build": "vite build",
-    "lint": "eslint . --ext .js,.jsx --fix",
-    "test": "node --test",
+    "cli": "node --import=tsx cli.ts serve -- --dev",
+    "dev": "node --import=tsx server.ts --dev",
     "format": "biome format --write .",
-    "lint:unsafe": "biome lint --write --unsafe ."
+    "lint": "eslint . --ext .js,.jsx --fix",
+    "lint:unsafe": "biome lint --write --unsafe .",
+    "start": "node server.js",
+    "test": "node --test"
   },
   "dependencies": {
     "@fastify/vite": "^6.0.7",

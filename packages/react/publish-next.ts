@@ -1,5 +1,5 @@
-import {  execSync } from "child_process"
-import { writeFile } from "fs/promises"
+import { execSync } from "node:child_process"
+import { writeFile } from "node:fs/promises"
 import pkg from "./package.json"
 import { execAsync } from "./utils/exec-async"
 

@@ -2,10 +2,7 @@
   "name": "@alexvyber/mothman",
   "version": "0.0.0",
   "description": "React Stories",
-  "keywords": [
-    "react",
-    "stories"
-  ],
+  "keywords": ["react", "stories"],
   "homepage": "https://github.com/alexvyber/mothman#readme",
   "bugs": {
     "url": "https://github.com/alexvyber/mothman/issues"
@@ -17,9 +14,7 @@
   "license": "MIT",
   "author": "Alex Vyber",
   "main": "index.js",
-  "workspaces": [
-    "packages/react"
-  ],
+  "workspaces": ["packages/react"],
   "scripts": {
     "format": "biome format --write .",
     "lint": "biome lint --write .",
