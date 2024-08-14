@@ -1,25 +1,50 @@
 {
-  "$schema": "https://biomejs.dev/schemas/1.8.1/schema.json",
-  "organizeImports": { "enabled": true },
+  "$schema": "https://biomejs.dev/schemas/1.8.3/schema.json",
+  "organizeImports": {
+    "enabled": true
+  },
+  "css": {
+    "formatter": {
+      "enabled": true,
+      "indentStyle": "space",
+      "indentWidth": 2,
+      "lineWidth": 80
+    }
+  },
+  "json": {
+    "formatter": {
+      "enabled": true,
+      "indentStyle": "space",
+      "indentWidth": 2,
+      "lineWidth": 120
+    }
+  },
   "javascript": {
     "formatter": {
       "semicolons": "asNeeded",
       "trailingCommas": "es5",
-      "arrowParentheses": "always"
+      "arrowParentheses": "always",
+      "quoteStyle": "double",
+      "jsxQuoteStyle": "double",
+      "bracketSameLine": false,
+      "bracketSpacing": true
     },
+    "globals": ["$", "_"],
     "parser": {
       "unsafeParameterDecoratorsEnabled": true
     }
   },
   "formatter": {
+    "ignore": ["dist", "build", "node_modules", "__generated__", ".next", "bin"],
     "lineWidth": 120,
-    "indentStyle": "space",
+    "lineEnding": "lf",
     "indentWidth": 2,
-    "ignore": ["dist", "build", "node_modules"],
+    "indentStyle": "space",
+    "formatWithErrors": false,
     "attributePosition": "multiline"
   },
   "linter": {
-    "ignore": ["dist", "build", "node_modules"],
+    "ignore": ["dist", "build", "node_modules", "__generated__", ".next", "bin"],
     "enabled": true,
     "rules": {
       "recommended": true,
@@ -38,10 +63,10 @@
         "noShoutyConstants": "warn",
         "noImplicitBoolean": "error",
         "noInferrableTypes": "warn",
-        "noParameterAssign": "error",
+        "noParameterAssign": "off",
         "useFragmentSyntax": "error",
         "noNonNullAssertion": "info",
-        "useBlockStatements": "error",
+        "useBlockStatements": "off",
         "useCollapsedElseIf": "warn",
         "useShorthandAssign": "info",
         "useNumericLiterals": "error",
@@ -67,7 +92,7 @@
       "complexity": {
         "noVoid": "off",
         "noWith": "error",
-        "noForEach": "error",
+        "noForEach": "off",
         "useFlatMap": "error",
         "noBannedTypes": "error",
         "useLiteralKeys": "error",
@@ -93,7 +118,12 @@
         "noUselessLoneBlockStatements": "error",
         "useSimplifiedLogicExpression": "error",
         "noMultipleSpacesInRegularExpressionLiterals": "error",
-        "noExcessiveCognitiveComplexity": { "level": "warn", "options": { "maxAllowedComplexity": 10 } }
+        "noExcessiveCognitiveComplexity": {
+          "level": "warn",
+          "options": {
+            "maxAllowedComplexity": 20
+          }
+        }
       },
       "suspicious": {
         "useAwait": "off",
@@ -195,9 +225,9 @@
       },
       "performance": {
         "noAccumulatingSpread": "error",
-        "noBarrelFile": "error",
+        "noBarrelFile": "off",
         "noDelete": "error",
-        "noReExportAll": "error"
+        "noReExportAll": "off"
       }
     }
   }
