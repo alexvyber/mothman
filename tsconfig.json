@@ -108,9 +108,9 @@
     "skipDefaultLibCheck": true /* Skip type checking .d.ts files that are included with TypeScript. */,
     "skipLibCheck": true /* Skip type checking all .d.ts files. */,
     "paths": {
-      "virtual:stories": ["./packages/react/lib/vite-plugin/types.d.ts"]
+      // "virtual:stories": ["./lib/vite-plugin/virt.d.ts"]
     }
   },
 
-  "include": ["packages/react"]
+  "include": ["lib"]
 }

@@ -1,3 +1,3 @@
-# mothman 
+# moth
 
-mothman is an environment to develop, test, and share your React components, probaly using some AI agents... You know?
+moth is an environment to develop, test, and share your React components, probaly using some AI agents... You know?

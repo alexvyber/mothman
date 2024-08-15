@@ -1,17 +1,20 @@
 {
-  "name": "mothman",
+  "name": "moth",
   "version": "0.0.0",
-  "description": "",
-  "keywords": [],
-  "license": "MIT",
-  "author": "",
   "type": "module",
-  "main": "index.js",
-  "types": "./lib/app/exports.ts",
+  "description": "",
+  "author": "",
+  "license": "MIT",
+  "engines": {
+    "node": ">=20.0.0"
+  },
   "bin": {
     "moth": "./bin/cli.js"
   },
+  "main": "index.js",
+  "types": "./lib/app/exports.ts",
   "files": ["bin"],
+  "keywords": [],
   "scripts": {
     "build": "vite build",
     "cli": "node --import=tsx cli.ts serve -- --dev",
@@ -21,6 +24,10 @@
     "lint:unsafe": "biome lint --write --unsafe .",
     "start": "node server.js",
     "test": "node --test"
+  },
+  "peerDependencies": {
+    "react": ">=18.0.0",
+    "react-dom": ">=18.0.0"
   },
   "dependencies": {
     "@babel/code-frame": "^7.24.6",
@@ -32,47 +39,70 @@
     "@babel/types": "^7.24.6",
     "@fastify/vite": "^6.0.7",
     "@mdx-js/mdx": "^3.0.1",
+    "@mdx-js/react": "^3.0.1",
     "@vitejs/plugin-react": "^4.3.1",
     "@vitejs/plugin-react-swc": "^3.7.0",
+    "axe-core": "^4.9.1",
     "boxen": "^8.0.1",
     "change-case": "^5.4.4",
     "chokidar": "^3.6.0",
+    "classnames": "^2.5.1",
     "commander": "^12.1.0",
+    "cross-spawn": "^7.0.3",
+    "debug": "^4.3.4",
     "fastify": "^4.28.1",
     "get-port": "^7.1.0",
     "globby": "^14.0.2",
     "history": "^5.3.0",
+    "koa": "^2.15.3",
+    "koa-connect": "^2.1.0",
+    "lodash.merge": "^4.6.2",
     "msw": "^2.3.0",
+    "open": "^10.1.0",
     "pino": "^9.3.2",
+    "prism-react-renderer": "^2.3.1",
+    "prop-types": "^15.8.1",
     "query-string": "^9.1.0",
     "react-hotkeys-hook": "^4.5.0",
+    "react-inspector": "^6.0.2",
+    "rehype-class-names": "^2.0.0",
+    "rehype-raw": "^7.0.0",
+    "remark-gfm": "^4.0.0",
     "remeda": "^2.11.0",
+    "source-map": "^0.7.4",
+    "vfile": "^6.0.1",
     "vite": "^5.3.5",
     "vite-tsconfig-paths": "^5.0.1"
   },
   "devDependencies": {
     "@babel/cli": "^7.24.6",
+    "@ianvs/prettier-plugin-sort-imports": "^4.3.1",
     "@storybook/react": "^8.2.8",
     "@types/babel__code-frame": "^7.0.6",
     "@types/babel__core": "^7.20.5",
     "@types/babel__generator": "^7.6.8",
     "@types/babel__template": "^7.4.4",
     "@types/babel__traverse": "^7.20.6",
+    "@types/cross-spawn": "^6.0.6",
+    "@types/debug": "^4.1.12",
+    "@types/express": "^4.17.21",
+    "@types/koa": "^2.15.0",
+    "@types/lodash.merge": "^4.6.9",
     "@types/node": "^22.2.0",
     "@types/react": "^18.3.3",
+    "@types/react-dom": "^18.3.0",
+    "@types/ws": "^8.5.10",
     "autoprefixer": "^10.4.20",
+    "cross-env": "^7.0.3",
     "postcss": "^8.4.41",
+    "prettier-plugin-pkg": "^0.18.1",
+    "prettier-plugin-tailwindcss": "^0.6.6",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "tailwindcss": "^3.4.10",
-    "vite-plugin-inspect": "^0.8.5"
-  },
-  "peerDependencies": {
-    "react": ">=18.0.0",
-    "react-dom": ">=18.0.0"
-  },
-  "engines": {
-    "node": ">=20.0.0"
+    "tsx": "^4.17.0",
+    "vite-plugin-inspect": "^0.8.5",
+    "vitest": "^1.6.0"
   },
   "publishConfig": {
     "access": "public"

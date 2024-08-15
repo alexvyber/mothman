@@ -35,7 +35,7 @@
     }
   },
   "formatter": {
-    "ignore": ["dist", "build", "node_modules", "__generated__", ".next", "bin"],
+    "ignore": ["dist", "build", "node_modules", "__generated__", ".next", "bin", "vendor"],
     "lineWidth": 120,
     "lineEnding": "lf",
     "indentWidth": 2,
@@ -44,7 +44,7 @@
     "attributePosition": "multiline"
   },
   "linter": {
-    "ignore": ["dist", "build", "node_modules", "__generated__", ".next", "bin"],
+    "ignore": ["dist", "build", "node_modules", "__generated__", ".next", "bin", "vendor"],
     "enabled": true,
     "rules": {
       "recommended": true,
@@ -162,7 +162,7 @@
         "noDuplicateParameters": "error",
         "noDuplicateObjectKeys": "error",
         "noAssignInExpressions": "error",
-        "noEmptyBlockStatements": "error",
+        "noEmptyBlockStatements": "off",
         "noAsyncPromiseExecutor": "error",
         "noShadowRestrictedNames": "error",
         "noExtraNonNullAssertion": "error",
@@ -188,7 +188,7 @@
         "noUnusedLabels": "error",
         "noPrecisionLoss": "error",
         "noUnsafeFinally": "error",
-        "noUnusedImports": "error",
+        "noUnusedImports": "off",
         "useArrayLiterals": "error",
         "noVoidTypeReturn": "error",
         "useHookAtTopLevel": "error",

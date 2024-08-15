@@ -1,7 +1,8 @@
 import { execSync } from "node:child_process"
 import { writeFile } from "node:fs/promises"
+import { execAsync } from "./lib/shared/exec-async"
+
 import pkg from "./package.json"
-import { execAsync } from "./utils/exec-async"
 
 const version = `0.0.0-next-${execSync("git rev-parse --short HEAD").toString().trim()}`
 console.log(`publishing ${version}`)
