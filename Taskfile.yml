@@ -5,4 +5,4 @@ tasks:
       - node --import=tsx publish-next.ts
   serve:
     cmds:
-      - node --import=tsx lib/cli/cli.ts serve
+      - node --import=tsx src/cli/cli.ts serve

@@ -112,5 +112,5 @@
     }
   },
 
-  "include": ["lib"]
+  "include": ["src"]
 }

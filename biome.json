@@ -131,7 +131,7 @@
         "noDebugger": "warn",
         "noRedeclare": "error",
         "noConstEnum": "warn",
-        "noConsoleLog": "off",
+        "noConsoleLog": "error",
         "noGlobalIsNan": "error",
         "noSelfCompare": "error",
         "noSparseArray": "error",
