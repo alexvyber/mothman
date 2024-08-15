@@ -1,20 +1,11 @@
 {
-  "name": "moth",
+  "name": "mothman",
   "version": "0.0.0",
-  "type": "module",
   "description": "",
-  "author": "",
-  "license": "MIT",
-  "engines": {
-    "node": ">=20.0.0"
-  },
-  "bin": {
-    "moth": "./bin/cli.js"
-  },
-  "main": "index.js",
-  "types": "./lib/app/exports.ts",
-  "files": ["bin"],
   "keywords": [],
+  "license": "MIT",
+  "author": "",
+  "type": "module",
   "scripts": {
     "build": "vite build",
     "cli": "node --import=tsx cli.ts serve -- --dev",
@@ -24,10 +15,6 @@
     "lint:unsafe": "biome lint --write --unsafe .",
     "start": "node server.js",
     "test": "node --test"
-  },
-  "peerDependencies": {
-    "react": ">=18.0.0",
-    "react-dom": ">=18.0.0"
   },
   "dependencies": {
     "@babel/code-frame": "^7.24.6",
@@ -87,6 +74,13 @@
     "tailwindcss": "^3.4.10",
     "tsx": "^4.17.0",
     "vite-plugin-inspect": "^0.8.5"
+  },
+  "peerDependencies": {
+    "react": ">=18.0.0",
+    "react-dom": ">=18.0.0"
+  },
+  "engines": {
+    "node": ">=22.5.0"
   },
   "publishConfig": {
     "access": "public"
