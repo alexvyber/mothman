@@ -1,3 +1,3 @@
 # moth
 
-moth is an environment to develop, test, and share your React components, probaly using some AI agents... You know?
+This repo is produced by copying and editing code bt hand from [ladle](https://ladle.dev/).
