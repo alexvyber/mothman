@@ -1,8 +1,0 @@
-version: '3'
-tasks:
-  publish:
-    cmds:
-      - node --import=tsx publish-next.ts
-  serve:
-    cmds:
-      - node --import=tsx lib/cli/cli.ts serve
