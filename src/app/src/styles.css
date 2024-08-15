@@ -1,0 +1,700 @@
+:root {
+  --moth-bg-color-primary: #fff;
+  --moth-bg-color-secondary: #f1f5f9;
+  --moth-color-primary: #0f172a;
+  --moth-color-secondary: #cbd5e1;
+  --moth-color-hover: #64748b;
+  --moth-color-accent: #6366f1;
+  --moth-ring-size: 64px;
+  --moth-ring-thickness: 6px;
+  --moth-mode-overflow: hidden;
+  --moth-mode-height: 100vh;
+  --moth-main-padding: 3em;
+  --moth-main-padding-mobile: 1em;
+  --reach-dialog: 1;
+  --moth-blueprint: #94a3b8;
+}
+[data-theme="dark"] {
+  --moth-bg-color-primary: #0f172a;
+  --moth-bg-color-secondary: #1e293b;
+  --moth-color-primary: #f6f6f6;
+  --moth-color-secondary: #cbd5e1;
+  --moth-color-hover: #e2e8f0;
+  --moth-color-accent: #6366f1;
+  --moth-blueprint: #1e293b;
+}
+[data-mode="single-scroll"],
+[data-mode="preview"] {
+  --moth-mode-overflow: visible;
+  --moth-mode-height: 100%;
+}
+[data-iframed] {
+  --moth-main-padding: 0;
+  --moth-main-padding-mobile: 0;
+  --moth-main-padding: 0;
+}
+
+.moth-wrapper,
+html,
+body {
+  margin: 0;
+}
+
+[data-iframed]:not([data-iframed="0"]) .moth-main {
+  display: grid;
+  grid-template-columns: minmax(64px, 1fr) auto minmax(64px, 1fr);
+  overflow: auto;
+  background-color: var(--moth-blueprint);
+  background-image: linear-gradient(
+      rgba(255, 255, 255, 0.1) 2px,
+      transparent 2px
+    ), linear-gradient(90deg, rgba(255, 255, 255, 0.1) 2px, transparent 2px),
+    linear-gradient(rgba(255, 255, 255, 0.1) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.1) 1px, transparent 1px);
+  background-size: 100px 100px, 100px 100px, 20px 20px, 20px 20px;
+  background-position: -2px -2px, -2px -2px, -1px -1px, -1px -1px;
+}
+
+.moth-iframe {
+  height: 100%;
+  border: 0;
+  background-color: var(--moth-bg-color-primary);
+}
+
+[data-iframed]:not([data-iframed="0"]) .moth-iframe {
+  grid-column: 2;
+  height: calc(100% - 128px);
+  min-height: 500px;
+  margin-top: 64px;
+  margin-bottom: 64px;
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px
+    30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px,
+    rgba(0, 0, 0, 0.09) 0px -3px 5px;
+}
+
+.moth-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -1000;
+  width: 100%;
+  height: 100%;
+  background-color: var(--moth-bg-color-primary);
+}
+
+.moth-wrapper {
+  display: flex;
+  flex-direction: column;
+}
+
+.moth-aside img,
+.moth-aside svg {
+  display: inline;
+  vertical-align: baseline;
+}
+
+.moth-main {
+  flex: 1 1 auto;
+  padding: var(--moth-main-padding-mobile);
+}
+
+.moth-error-content {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 14px;
+  color: var(--moth-color-primary);
+}
+
+.moth-link {
+  color: var(--moth-color-accent);
+}
+
+.moth-aside {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 14px;
+  background-color: var(--moth-bg-color-primary);
+  color: var(--moth-color-primary);
+  padding: 1.5em;
+}
+
+.moth-aside input {
+  padding: 0.5em 0em;
+  width: 100%;
+  border-top: 0;
+  border-left: 0;
+  border-right: 0;
+  border-color: var(--moth-color-hover);
+  border-bottom-width: 1px;
+  border-bottom-style: solid;
+  border-radius: 0;
+  background-color: var(--moth-bg-color-primary);
+  font-size: 14px;
+  color: var(--moth-color-primary);
+  margin-bottom: 0.5em;
+}
+
+.moth-aside input:focus {
+  outline: none;
+  color: var(--moth-color-accent);
+  border-color: var(--moth-color-accent);
+}
+
+.moth-aside ul {
+  padding: 0;
+  margin: 0.8em 0.75em 0 0.75em;
+}
+
+.moth-aside li {
+  list-style-type: none;
+  margin: 0.8em 0.35em;
+}
+
+.moth-aside li {
+  list-style-type: none;
+  margin: 0.8em 0.35em;
+}
+
+.moth-aside li:focus {
+  outline: none;
+}
+
+.moth-aside li:focus-visible > div {
+  outline: 2px solid var(--moth-color-accent);
+  outline-offset: 2px;
+}
+
+.moth-aside a {
+  text-decoration: none;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  color: var(--moth-color-primary);
+}
+
+.moth-aside a:hover {
+  color: var(--moth-color-hover);
+}
+
+.moth-aside a:focus {
+  outline: none;
+}
+
+.moth-aside a:focus-visible {
+  outline: 2px solid var(--moth-color-accent);
+  outline-offset: 2px;
+}
+
+.moth-aside .moth-active a {
+  font-weight: 700;
+}
+
+.moth-addons {
+  font-family: Arial, Helvetica, sans-serif;
+  color: var(--moth-color-primary);
+  padding: 0;
+  margin: 0;
+  position: relative;
+  bottom: 0;
+  margin-inline-start: 1em;
+  margin-inline-end: 1em;
+  margin-bottom: 2em;
+}
+
+.moth-addons ul {
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+}
+
+.moth-addons li {
+  background-color: var(--moth-bg-color-secondary);
+  box-shadow: 0 1px 2px hsla(0, 0%, 0%, 0.16);
+  border-bottom: none;
+  border-top-left-radius: 0.25em;
+  border-top-right-radius: 0.25em;
+  border-bottom-left-radius: 0.25em;
+  border-bottom-right-radius: 0.25em;
+  list-style-type: none;
+  margin: 0.35em;
+  width: auto;
+  height: 2.5em;
+}
+
+.moth-addons > ul > li > button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: none;
+  margin: 0;
+  padding: 0.3em;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  line-height: normal;
+  cursor: pointer;
+  border-radius: 4px;
+  outline: none;
+}
+
+.moth-addons > ul > li > button > label {
+  display: block;
+  cursor: pointer;
+  line-height: 24px;
+  font-size: 14px;
+  margin-inline-start: 0.5em;
+  padding-top: 0.1em;
+}
+
+.moth-addon-modal-body > button {
+  border: 0;
+  font-size: 14px;
+  border-radius: 4px;
+  padding: 0.25em 0.5em;
+  margin: 1em 0em;
+  background: var(--moth-color-accent);
+  color: #fff;
+  font: inherit;
+  letter-spacing: inherit;
+}
+
+.moth-addons > ul > li > button > .moth-badge {
+  font-style: normal;
+  min-width: 1.6em;
+  margin-left: 1em;
+  height: 1.6em;
+  border-radius: 0.8em;
+  background-color: #fa3e3e;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 14px;
+  color: white;
+}
+
+.moth-addon-modal-body select,
+.moth-addon-modal-body input,
+.moth-addon-modal-body textarea {
+  font-size: 14px;
+  border-radius: 4px;
+  border: 1px solid var(--moth-color-primary);
+  padding: 0.5em 0.75em;
+  margin: 0;
+  background: var(--moth-bg-color-primary);
+  color: var(--moth-color-primary);
+}
+
+.moth-addon-modal-body pre,
+.moth-addon-modal-body code {
+  font-size: 13px;
+}
+
+.moth-addon-modal-body input[type="range"] {
+  padding: 0;
+  margin: 0 0.5em;
+  vertical-align: middle;
+}
+
+.moth-addon-modal-body > button:hover {
+  color: #ccc;
+}
+
+.moth-addon-tooltip {
+  box-shadow: 0 1px 2px hsla(0, 0%, 0%, 0.16);
+  display: none;
+  white-space: nowrap;
+  background: var(--moth-bg-color-secondary);
+  color: var(--moth-color-primary);
+  border-radius: 4px;
+  margin-top: -96px;
+  inset-inline-start: 5px;
+  padding: 10px;
+  position: absolute;
+  z-index: 1000;
+}
+
+.moth-addon-source-lineno {
+  display: table-cell;
+  text-align: right;
+  padding-right: 0.25em;
+  padding-left: 0.25em;
+  user-select: none;
+  opacity: 0.5;
+}
+
+.moth-addons > ul > li > .moth-active {
+  color: var(--moth-color-accent);
+}
+
+.moth-addons > ul > li > .source-active,
+.moth-addons > ul > li > .width-active {
+  color: var(--moth-color-accent);
+}
+
+.moth-addons > ul > li > .a11y-active {
+  color: var(--moth-color-accent);
+}
+
+.moth-addons > ul > li > button:focus-visible {
+  border: 2px solid var(--moth-color-accent);
+}
+
+.moth-addons > ul > li > button:hover {
+  box-shadow: none;
+  color: var(--moth-color-accent);
+}
+
+.moth-controls-table td {
+  padding: 0.25em 1em 0.25em 0em;
+}
+
+.moth-controls-table input {
+  margin: 0;
+}
+
+.moth-controls-table input[type="radio"] {
+  margin-right: 0.3em;
+}
+
+.moth-controls-table span {
+  margin-right: 1em;
+}
+
+.moth-controls-table select {
+  min-width: 177px;
+}
+
+.moth-controls-table textarea {
+  min-width: 172px;
+  min-height: 3em;
+}
+
+.moth-controls-table {
+  margin-bottom: 1em;
+}
+
+.moth-ring-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  width: 100%;
+  visibility: hidden;
+  animation: moth-ring-fadein 1.5s;
+  animation-fill-mode: forwards;
+  animation-delay: 0.5s; /* no spinner flickering for fast load times */
+}
+
+@keyframes moth-ring-fadein {
+  from {
+    visibility: visible;
+    opacity: 0;
+  }
+  to {
+    visibility: visible;
+    opacity: 1;
+  }
+}
+
+.moth-ring {
+  display: inline-block;
+  position: relative;
+  width: var(--moth-ring-size);
+  height: var(--moth-ring-size);
+}
+
+.moth-ring div {
+  box-sizing: border-box;
+  display: block;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border: var(--moth-ring-thickness) solid var(--moth-color-secondary);
+  border-radius: 50%;
+  animation: moth-ring 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+  border-color: var(--moth-color-secondary) transparent transparent transparent;
+}
+
+.moth-ring div:nth-child(1) {
+  animation-delay: -0.45s;
+}
+
+.moth-ring div:nth-child(2) {
+  animation-delay: -0.3s;
+}
+
+.moth-ring div:nth-child(3) {
+  animation-delay: -0.15s;
+}
+
+@keyframes moth-ring {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+div[data-reach-dialog-content][data-testid="moth-dialog"] {
+  box-shadow: 0 1px 2px hsla(0, 0%, 0%, 0.16);
+  outline: none;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 13px;
+  background-color: var(--moth-bg-color-secondary);
+  color: var(--moth-color-primary);
+  border-radius: 4px;
+  padding: 1.2em 2em 0.8em 2em;
+  margin: 21px;
+  position: absolute;
+  bottom: 0px;
+  overflow: none;
+}
+
+div[data-reach-dialog-content][data-testid="moth-dialog"] a {
+  color: var(--moth-color-accent);
+}
+
+div[data-reach-dialog-overlay][data-testid="moth-dialog-overlay"] {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  overflow: auto;
+  z-index: 2147483647;
+}
+
+.moth-button {
+  box-sizing: border-box;
+  box-shadow: 0 1px 2px hsla(0, 0%, 0%, 0.16);
+  border: 1px solid var(--moth-color-secondary);
+  margin: 1px 8px;
+  padding: 0.5em;
+  width: auto;
+  cursor: pointer;
+  overflow: visible;
+  background: inherit;
+  color: inherit;
+  border-radius: 4px;
+  font: inherit;
+  line-height: normal;
+  -webkit-font-smoothing: inherit;
+  -moz-osx-font-smoothing: inherit;
+  -webkit-appearance: none;
+}
+
+.moth-button:hover {
+  background: var(--moth-bg-color-secondary);
+  color: var(--moth-color-accent);
+}
+
+.moth-button:focus {
+  outline: none;
+}
+
+.moth-button:focus-visible {
+  border: 2px solid var(--moth-color-accent) !important;
+  margin: 0px 7px;
+}
+
+q.moth-code,
+code.moth-markdown {
+  tab-size: 2;
+  padding: 0.2em 0.4em;
+  margin: 0;
+  line-height: 2;
+  font-size: 14px;
+  background-color: var(--moth-bg-color-secondary);
+  border: 1px solid var(--moth-color-hover);
+  color: var(--moth-color-primary);
+  border-radius: 6px;
+  font-family: SFMono-Regular, Consolas, Liberation Mono, Menlo, monospace;
+}
+
+h1.moth-markdown,
+h2.moth-markdown,
+h3.moth-markdown,
+h4.moth-markdown,
+h5.moth-markdown,
+h6.moth-markdown {
+  font-family: Arial, Helvetica, sans-serif;
+  color: var(--moth-color-primary);
+}
+
+p.moth-markdown,
+ul.moth-markdown,
+ol.moth-markdown {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 14px;
+  color: var(--moth-color-primary);
+}
+
+a.moth-markdown {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 14px;
+  color: var(--moth-color-accent);
+}
+
+blockquote.moth-markdown {
+  border-left: 6px solid var(--moth-color-secondary);
+  padding-left: 24px;
+  margin-left: 0;
+}
+
+.moth-addon-modal-body {
+  max-height: 80vh;
+  overflow: auto;
+  tab-size: 2;
+}
+
+.moth-addon-modal-body ul {
+  list-style: square;
+  overflow: auto;
+  margin: 8px;
+  padding-left: 40px;
+}
+
+.moth-resize-handle {
+  display: none;
+}
+
+@media (min-width: 768px) {
+  html,
+  body {
+    height: 100%;
+  }
+
+  .moth-wrapper {
+    min-height: 100%;
+    margin: 0;
+    flex-direction: row;
+    align-items: flex-start;
+  }
+
+  [data-mode="full"] html,
+  [data-mode="full"] body,
+  [data-mode="full"] .moth-wrapper {
+    height: 100vh;
+    overflow: hidden;
+  }
+
+  .moth-resize-handle {
+    transition: box-shadow 0.15s ease-in;
+    display: block;
+    width: 16px;
+    height: 100%;
+    cursor: col-resize;
+    background-color: var(--moth-bg-color-secondary);
+  }
+
+  .moth-resize-handle:hover {
+    box-shadow: inset 3px 0 0 0 var(--moth-color-accent);
+  }
+
+  [data-reversed] .moth-resize-handle:hover {
+    box-shadow: inset -3px 0 0 0 var(--moth-color-accent);
+  }
+
+  .moth-resize-active {
+    box-shadow: inset 3px 0 0 0 var(--moth-color-accent);
+  }
+
+  [data-reversed] .moth-resize-active {
+    box-shadow: inset -3px 0 0 0 var(--moth-color-accent);
+  }
+
+  .moth-aside {
+    box-sizing: content-box;
+  }
+
+  .moth-main {
+    padding: var(--moth-main-padding);
+    align-self: stretch;
+  }
+
+  .moth-aside {
+    font-size: 14px;
+    flex: 0 0 12em;
+    padding: 3em 2em;
+    padding-left: calc(2em - 16px);
+    min-width: 15em;
+    background-color: var(--moth-bg-color-secondary);
+    min-height: max-content;
+    align-self: stretch;
+  }
+
+  [data-reversed] .moth-aside {
+    padding-left: 2em;
+    padding-right: calc(2em - 16px);
+  }
+
+  [data-mode="full"] .moth-main,
+  [data-mode="full"] .moth-aside {
+    overflow: auto;
+  }
+
+  .moth-aside ul {
+    margin: 0;
+    user-select: none;
+    margin-inline-start: 0.75em;
+  }
+
+  .moth-aside li {
+    margin: 0.35em 0.35em;
+    line-height: 16px;
+  }
+
+  .moth-aside input {
+    line-height: 1;
+    background-color: var(--moth-bg-color-secondary);
+  }
+
+  .moth-aside input::placeholder {
+    user-select: none;
+  }
+
+  .moth-addons {
+    position: fixed;
+    margin-bottom: 0;
+    z-index: 2147483647;
+  }
+
+  .moth-addons ul {
+    flex-direction: row;
+  }
+
+  .moth-addons li {
+    margin: 0 0.35em 0 0.35em;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+    width: 2.5em;
+  }
+
+  .moth-addons > ul > li > button > label {
+    display: none;
+  }
+
+  div[data-reach-dialog-content][data-testid="moth-dialog"] {
+    position: fixed;
+    bottom: 49px;
+    inset-inline-start: 21px;
+    margin-inline-end: 21px;
+    max-width: 40em;
+    margin: 0;
+  }
+
+  .moth-addons > ul > li > button:hover .moth-addon-tooltip {
+    display: block;
+  }
+
+  .moth-addons > ul > li > button > .moth-badge {
+    position: absolute;
+    margin-left: 3.1em;
+    top: -0.7em;
+    font-size: 14px;
+  }
+}
