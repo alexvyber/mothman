@@ -10,11 +10,11 @@ import { getAppRoot } from "../shared/get-app-root.js"
 import { logger } from "../shared/logger.js"
 import { mothmanPlugin } from "../vite-plugin/plugin.js"
 import { copyMswWorker } from "./copy-msw-worker.js"
-import { getUserViteConfig } from "./get-user-vite-config.js"
+import { getViteUserConfig } from "./get-vite-user-config.js"
 import { mergeViteConfigs } from "./merge-vite-configs.js"
 
 export async function getViteBaseConfig(mothmanConfig: Config, viteConfig: InlineConfig, configFolder: string) {
-  const { userViteConfig, hasReactPlugin, hasReactSwcPlugin, hasTSConfigPathPlugin } = await getUserViteConfig(
+  const { userViteConfig, hasReactPlugin, hasReactSwcPlugin, hasTSConfigPathPlugin } = await getViteUserConfig(
     viteConfig.build ? "build" : "serve",
     viteConfig.mode || "production",
     mothmanConfig.viteConfig

@@ -9,7 +9,7 @@ import { loadConfigFromFile, Plugin, UserConfig } from "vite"
 import { GetUserViteConfig } from "../app/src/types"
 import { logger } from "../shared/logger"
 
-export async function getUserViteConfig(
+export async function getViteUserConfig(
   command: "build" | "serve",
   mode: string,
   viteConfig: string | undefined

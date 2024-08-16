@@ -6,7 +6,7 @@ import { defaultConfig as config_ } from "../shared/default-config.js"
 import { getErrorMessage } from "../shared/get-error-message.js"
 import { logger } from "../shared/logger.js"
 
-export async function loadConfig(configFolder: string): Promise<Config> {
+export async function loadMothConfig(configFolder: string): Promise<Config> {
   const defaultConfig = { ...config_ }
 
   try {
