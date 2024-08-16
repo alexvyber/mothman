@@ -3,6 +3,8 @@ import queryString, { ParsedQuery } from "query-string"
 
 import { Control, GlobalState } from "../src/types"
 import config from "./load-config"
+import { logger } from "../../shared/logger"
+import { getErrorMessage } from "../../shared/get-error-message"
 
 export const history = createBrowserHistory()
 export { Action } from "history"
@@ -50,15 +52,16 @@ export function getHref(params: Partial<GlobalState> = {}): string {
 
   const encodedParams = {} as Record<string, string>
 
-  for (const key of Object.keys(params)) {
+  for (const [key, value] of Object.entries(params)) {
     if (!(key === "control")) {
-      encodedParams[key] = (params as any)[key]
+      // @ts-expect-error
+      encodedParams[key] = value
     }
 
     if (key === "control") {
       // for controls we are spreading individual args into URL
-      for (const param of Object.keys(params[key]!)) {
-        const arg = params[key]?.[param]!
+      for (const [param, entry] of Object.entries(value)) {
+        const arg = entry
 
         // a special case, actions are handled by the addon-action
         if (arg.type === Control.Action) {
@@ -74,8 +77,8 @@ export function getHref(params: Partial<GlobalState> = {}): string {
           if (!isValueDefault && JSON.stringify(encoded) !== JSON.stringify(arg.defaultValue)) {
             encodedParams[`arg-${param}`] = encoded
           }
-        } catch (_error) {
-          // do nothing
+        } catch (error) {
+          logger.warn("Error get control params " + getErrorMessage(error))
         }
       }
     }

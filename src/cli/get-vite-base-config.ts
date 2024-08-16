@@ -1,4 +1,3 @@
-import { existsSync } from "node:fs"
 import { join } from "node:path"
 import { globby } from "globby"
 import { InlineConfig } from "vite"
@@ -23,9 +22,6 @@ export async function getViteBaseConfig(mothmanConfig: Config, viteConfig: Inlin
 
   logger.debug("User provided @vite/plugin-react: %s", hasReactPlugin)
   logger.debug("User provided @vite/plugin-react-swc: %s", hasReactSwcPlugin)
-
-  const inmothmanMonorepo = existsSync(join(import.meta.dirname, "../../../../e2e/addons/package.json"))
-  logger.debug("Executed from the moth monorepo: %s", inmothmanMonorepo)
 
   const resolve = {} as { alias: any }
 
@@ -105,6 +101,7 @@ export async function getViteBaseConfig(mothmanConfig: Config, viteConfig: Inlin
     },
 
     plugins: [
+      // TODO: remove inspect
       Inspect(),
       mothmanPlugin(mothmanConfig, configFolder, viteConfig.mode || "serve"),
       !(hasTSConfigPathPlugin || process.versions.pnp) && tsconfigPaths({ root: process.cwd() }),

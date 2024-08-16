@@ -18,34 +18,37 @@ function mergeConfigRecursively(defaults: UserConfig, overrides: UserConfig, roo
   const merged: UserConfig = { ...defaults }
 
   for (const key in overrides) {
-    // @ts-expect-error
-    const value = overrides[key]
+    const value = overrides[key as keyof typeof overrides]
+
     if (value == null) {
       continue
     }
 
-    // @ts-expect-error
-    const existing = merged[key]
+    const existing = merged[key as keyof typeof merged]
+
     if (existing == null) {
-      // @ts-expect-error
-      merged[key] = value
+      Object.assign(merged, { [key]: value })
       continue
     }
 
     if (Array.isArray(existing) || Array.isArray(value)) {
-      // @ts-expect-error
-      merged[key] = arraify(existing ?? []).concat(arraify(value ?? []))
+      Object.assign(merged, { [key]: arraify(existing ?? []).concat(arraify(value ?? [])) })
       continue
     }
 
     if (isObject(existing) && isObject(value)) {
-      // @ts-expect-error
-      merged[key] = mergeConfigRecursively(existing, value, rootPath ? `${rootPath}.${key}` : key)
+      Object.assign(merged, {
+        [key]: mergeConfigRecursively(
+          // @ts-expect-error
+          existing,
+          value,
+          rootPath ? `${rootPath}.${key}` : key
+        ),
+      })
       continue
     }
 
-    // @ts-expect-error
-    merged[key] = value
+    Object.assign(merged, { [key]: value })
   }
 
   return merged

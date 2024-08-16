@@ -89,7 +89,7 @@ async function runAxe(
   const axe = await import("axe-core")
 
   try {
-    const results = await axe.default.run(document.getElementsByTagName("main") as any)
+    const results = await axe.default.run(document.getElementsByTagName("main") as unknown as NodeListOf<HTMLElement>)
 
     setViolations(results.violations as ViolationType[])
     setReportFinished(true)

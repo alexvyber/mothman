@@ -23,12 +23,11 @@ export async function loadConfig(configFolder: string): Promise<Config> {
       defaultConfig.addons.width.options = {}
     }
 
-    const mergedConfig = mergeDeep(defaultConfig, config)
+    const mergedConfig = mergeDeep(defaultConfig, config) as Config
 
     // don't merge hotkeys
-    mergedConfig.hotkeys = { ...mergedConfig.hotkeys, ...config.hotkeys }
+    Object.assign(mergedConfig, { hotkeys: { ...mergedConfig.hotkeys, ...config.hotkeys } })
 
-    // @ts-expect-error
     return mergedConfig
   } catch (error) {
     logger.error(`Error loading config: ${getErrorMessage(error)}`)
