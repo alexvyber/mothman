@@ -18,6 +18,10 @@ import { applyCLIConfig } from "./apply-cli-config"
 import { getListenCallback } from "./get-listen-callback"
 import { getViteBaseConfig } from "./get-vite-base-config"
 
+// function app(){
+//   const app = new koa()
+// }
+
 export async function serve(cliParams: CLIParams) {
   const app = new koa()
 
@@ -33,6 +37,7 @@ export async function serve(cliParams: CLIParams) {
     {
       mode: config.mode || "development",
       server: {
+        open: false,
         host: config.host,
         port: config.port,
         // needed for hmr to work over network aka WSL2

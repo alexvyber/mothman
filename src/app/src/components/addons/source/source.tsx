@@ -9,7 +9,7 @@ import { Source } from "../../icons"
 import { Modal } from "../../ui/modal"
 import { CodeFrame } from "./code-frame"
 
-export const SourceButton = () => {
+export function SourceButton() {
   const { globalState, dispatch } = useMothmanContext()
 
   const text = "Show the story source code."

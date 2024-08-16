@@ -20,7 +20,7 @@ const ALLOWED_ARGTYPES = [
   "boolean",
 ]
 
-const ArgsProvider = ({ component, args, argTypes }: { component: any; args: any; argTypes: any }) => {
+function ArgsProvider({ component, args, argTypes }: { component: any; args: any; argTypes: any }) {
   const { globalState, dispatch } = useMothmanContext()
 
   const actionLogger = (name: string) => (event: Event) => {

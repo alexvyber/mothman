@@ -19,6 +19,7 @@ interface FrameState {
   iframeLoaded: boolean
 }
 
+// TODO: rewrite fo FC
 class FrameComponent extends Component<FrameProps, FrameState> {
   static defaultProps = {
     style: {},

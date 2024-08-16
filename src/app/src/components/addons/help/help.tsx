@@ -5,7 +5,7 @@ import { Help } from "../../icons"
 import { Modal } from "../../ui/modal"
 import { HotKeys } from "./hotkeys"
 
-export const HelpButton = () => {
+export function HelpButton() {
   const { globalState } = useMothmanContext()
   const [open, setOpen] = useState(false)
 

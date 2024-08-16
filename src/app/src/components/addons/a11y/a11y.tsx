@@ -12,7 +12,7 @@ import { Modal } from "../../ui/modal"
 import { AxeReport } from "./axe-report"
 import { ViolationType } from "./types"
 
-export const A11YButton = () => {
+export function A11YButton() {
   const { globalState } = useMothmanContext()
 
   const [showReport, setShowReport] = useState(false)

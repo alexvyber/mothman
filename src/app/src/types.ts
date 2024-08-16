@@ -1,3 +1,5 @@
+// TODO: narrow types
+
 import type { UserConfig as ViteUserConfig } from "vite"
 
 import React from "react"

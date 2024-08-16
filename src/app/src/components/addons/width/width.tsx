@@ -9,7 +9,7 @@ import { Action } from "../../../types"
 import { Width } from "../../icons"
 import { Modal } from "../../ui/modal"
 
-export const WidthButton = () => {
+export function WidthButton() {
   const { globalState, dispatch } = useMothmanContext()
 
   const text = "Change the story viewport."

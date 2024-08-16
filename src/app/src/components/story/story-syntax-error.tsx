@@ -1,6 +1,6 @@
 import { logger } from "../../../../shared/logger"
 
-export const StorySyntaxError = ({ error }: { error: string }) => {
+export function StorySyntaxError({ error }: { error: string }) {
   logger.error(`Error parsing stories: ${error}`)
 
   return (
