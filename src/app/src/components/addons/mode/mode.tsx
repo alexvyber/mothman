@@ -2,6 +2,7 @@ import { useMothmanContext } from "../../../../utils/global-context"
 import config from "../../../../utils/load-config"
 import { Action, Mode } from "../../../types"
 import { Preview } from "../../icons"
+import { AddonTooltip } from "../addons-ui"
 
 export function ModeButton() {
   const { dispatch } = useMothmanContext()
@@ -18,7 +19,7 @@ export function ModeButton() {
       >
         <Preview />
 
-        <span className="moth-addon-tooltip">{text}</span>
+        <AddonTooltip text={text} />
 
         <label>Open fullscreen mode</label>
       </button>

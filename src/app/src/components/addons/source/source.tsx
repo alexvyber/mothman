@@ -7,6 +7,7 @@ import config from "../../../../utils/load-config"
 import { Action } from "../../../types"
 import { Source } from "../../icons"
 import { Modal } from "../../ui/modal"
+import { AddonTooltip } from "../addons-ui"
 import { CodeFrame } from "./code-frame"
 
 export function SourceButton() {
@@ -30,7 +31,9 @@ export function SourceButton() {
           onClick={() => dispatch({ type: Action.UpdateSource, payload: !globalState.source })}
         >
           <Source />
-          <span className="moth-addon-tooltip">{text}</span>
+
+          <AddonTooltip text={text} />
+
           <label>Story Source Code</label>
         </button>
       </li>

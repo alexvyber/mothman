@@ -1,10 +1,10 @@
 import { createBrowserHistory } from "history"
 import queryString, { ParsedQuery } from "query-string"
 
+import { getErrorMessage } from "../../shared/get-error-message"
+import { logger } from "../../shared/logger"
 import { Control, GlobalState } from "../src/types"
 import config from "./load-config"
-import { logger } from "../../shared/logger"
-import { getErrorMessage } from "../../shared/get-error-message"
 
 export const history = createBrowserHistory()
 export { Action } from "history"
@@ -78,7 +78,7 @@ export function getHref(params: Partial<GlobalState> = {}): string {
             encodedParams[`arg-${param}`] = encoded
           }
         } catch (error) {
-          logger.warn("Error get control params " + getErrorMessage(error))
+          logger.warn(`Error get control params ${getErrorMessage(error)}`)
         }
       }
     }

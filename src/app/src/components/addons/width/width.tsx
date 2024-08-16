@@ -8,6 +8,7 @@ import config from "../../../../utils/load-config"
 import { Action } from "../../../types"
 import { Width } from "../../icons"
 import { Modal } from "../../ui/modal"
+import { AddonTooltip } from "../addons-ui"
 
 export function WidthButton() {
   const { globalState, dispatch } = useMothmanContext()
@@ -43,7 +44,9 @@ export function WidthButton() {
           onClick={() => setOpen(true)}
         >
           <Width />
-          <span className="moth-addon-tooltip">{text}</span>
+
+          <AddonTooltip text={text} />
+
           <label>Set story width</label>
         </button>
       </li>

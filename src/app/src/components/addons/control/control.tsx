@@ -6,7 +6,9 @@ import { useMothmanContext } from "../../../../utils/global-context"
 import config from "../../../../utils/load-config"
 import { Action, Control, ControlEnum, ControlState } from "../../../types"
 import { Controls } from "../../icons"
+import { Button } from "../../ui/button"
 import { Modal } from "../../ui/modal"
+import { AddonBadge, AddonTooltip } from "../addons-ui"
 
 const getInputType = (type?: ControlEnum) => {
   switch (type) {
@@ -358,62 +360,64 @@ export const ControlButton = () => {
   }
 
   return (
-    <li>
-      <button
-        aria-label={text}
-        title={text}
-        onClick={() => setOpen(true)}
-        className={open ? "moth-active" : ""}
-        data-testid="addon-control"
-        type="button"
-      >
-        <Controls />
-
-        <span className="moth-addon-tooltip">{text}</span>
-
-        <label>Story Controls</label>
-
-        {activeControls.length ? <div className="moth-badge">{activeControls.length}</div> : null}
-
-        <Modal
-          isOpen={open}
-          close={() => setOpen(false)}
-          label="Toggle different controls to update the story."
+    <>
+      <li>
+        <button
+          aria-label={text}
+          title={text}
+          onClick={() => setOpen(true)}
+          className={open ? "moth-active" : ""}
+          data-testid="addon-control"
+          type="button"
         >
-          <table className="moth-controls-table">
-            <tbody>
-              {Object.keys(globalState.control)
-                .sort()
-                .map((controlKey) => {
-                  return (
-                    <ControlAddon
-                      key={controlKey}
-                      controlKey={controlKey}
-                    />
-                  )
-                })}
-            </tbody>
-          </table>
+          <Controls />
 
-          <button
-            onClick={() => {
-              const controls: ControlState = {}
+          <AddonTooltip text={text} />
 
-              Object.keys(globalState.control).forEach((control) => {
-                controls[control] = {
-                  ...globalState.control[control],
-                  value: globalState.control[control].defaultValue,
-                }
-              })
+          <label>Story Controls</label>
 
-              dispatch({ type: Action.UpdateControl, payload: controls })
-            }}
-            type="button"
-          >
-            Reset to defaults
-          </button>
-        </Modal>
-      </button>
-    </li>
+          {activeControls.length ? <AddonBadge>{activeControls.length}</AddonBadge> : null}
+        </button>
+      </li>
+
+      <Modal
+        isOpen={open}
+        close={() => setOpen(false)}
+        label="Toggle different controls to update the story."
+      >
+        <table className="moth-controls-table">
+          <tbody>
+            {Object.keys(globalState.control)
+              .sort()
+              .map((controlKey) => {
+                return (
+                  <ControlAddon
+                    key={controlKey}
+                    controlKey={controlKey}
+                  />
+                )
+              })}
+          </tbody>
+        </table>
+
+        <Button
+          onClick={() => {
+            const controls: ControlState = {}
+
+            Object.keys(globalState.control).forEach((control) => {
+              controls[control] = {
+                ...globalState.control[control],
+                value: globalState.control[control].defaultValue,
+              }
+            })
+
+            dispatch({ type: Action.UpdateControl, payload: controls })
+          }}
+          type="button"
+        >
+          Reset to defaults
+        </Button>
+      </Modal>
+    </>
   )
 }

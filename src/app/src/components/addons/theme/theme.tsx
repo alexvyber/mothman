@@ -4,6 +4,7 @@ import { useMothmanContext } from "../../../../utils/global-context"
 import config from "../../../../utils/load-config"
 import { Bulb } from "../../../components/icons"
 import { Action, Theme } from "../../../types"
+import { AddonTooltip } from "../addons-ui"
 
 export function ThemeButton() {
   const { globalState, dispatch } = useMothmanContext()
@@ -29,7 +30,7 @@ export function ThemeButton() {
       >
         <Bulb />
 
-        <span className="moth-addon-tooltip">{globalState.theme === Theme.Light ? darkText : lightText}</span>
+        <AddonTooltip text={globalState.theme === Theme.Light ? darkText : lightText} />
 
         <label>Switch to {globalState.theme === Theme.Light ? Theme.Dark : Theme.Light} theme</label>
       </button>

@@ -2,6 +2,7 @@ import { useState } from "react"
 
 import { useMothmanContext } from "../../../../utils/global-context"
 import { Action as ActionIcon } from "../../icons"
+import { AddonBadge, AddonTooltip } from "../addons-ui"
 import { ActionModal } from "./action-modal"
 
 export function ActionButton() {
@@ -26,9 +27,12 @@ export function ActionButton() {
           type="button"
         >
           <ActionIcon />
-          <span className="moth-addon-tooltip">{text}</span>
+
+          <AddonTooltip text={text} />
+
           <label>Actions</label>
-          <div className="moth-badge">{globalState.action.length}</div>
+
+          <AddonBadge>{globalState.action.length}</AddonBadge>
         </button>
       </li>
 

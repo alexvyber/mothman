@@ -1,3 +1,7 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 :root {
   --moth-bg-color-primary: #fff;
   --moth-bg-color-secondary: #f1f5f9;
@@ -99,8 +103,6 @@ body {
 }
 
 .moth-error-content {
-  font-family: Arial, Helvetica, sans-serif;
-  font-size: 14px;
   color: var(--moth-color-primary);
 }
 
@@ -109,8 +111,6 @@ body {
 }
 
 .moth-aside {
-  font-family: Arial, Helvetica, sans-serif;
-  font-size: 14px;
   background-color: var(--moth-bg-color-primary);
   color: var(--moth-color-primary);
   padding: 1.5em;
@@ -127,7 +127,6 @@ body {
   border-bottom-style: solid;
   border-radius: 0;
   background-color: var(--moth-bg-color-primary);
-  font-size: 14px;
   color: var(--moth-color-primary);
   margin-bottom: 0.5em;
 }
@@ -188,7 +187,6 @@ body {
 }
 
 .moth-addons {
-  font-family: Arial, Helvetica, sans-serif;
   color: var(--moth-color-primary);
   padding: 0;
   margin: 0;
@@ -244,14 +242,12 @@ body {
   display: block;
   cursor: pointer;
   line-height: 24px;
-  font-size: 14px;
   margin-inline-start: 0.5em;
   padding-top: 0.1em;
 }
 
 .moth-addon-modal-body > button {
   border: 0;
-  font-size: 14px;
   border-radius: 4px;
   padding: 0.25em 0.5em;
   margin: 1em 0em;
@@ -261,24 +257,9 @@ body {
   letter-spacing: inherit;
 }
 
-.moth-addons > ul > li > button > .moth-badge {
-  font-style: normal;
-  min-width: 1.6em;
-  margin-left: 1em;
-  height: 1.6em;
-  border-radius: 0.8em;
-  background-color: #fa3e3e;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: 14px;
-  color: white;
-}
-
 .moth-addon-modal-body select,
 .moth-addon-modal-body input,
 .moth-addon-modal-body textarea {
-  font-size: 14px;
   border-radius: 4px;
   border: 1px solid var(--moth-color-primary);
   padding: 0.5em 0.75em;
@@ -298,25 +279,7 @@ body {
   vertical-align: middle;
 }
 
-.moth-addon-modal-body > button:hover {
-  color: #ccc;
-}
-
-.moth-addon-tooltip {
-  box-shadow: 0 1px 2px hsla(0, 0%, 0%, 0.16);
-  display: none;
-  white-space: nowrap;
-  background: var(--moth-bg-color-secondary);
-  color: var(--moth-color-primary);
-  border-radius: 4px;
-  margin-top: -96px;
-  inset-inline-start: 5px;
-  padding: 10px;
-  position: absolute;
-  z-index: 1000;
-}
-
-.moth-addon-source-lineno {
+.moth .moth-addon-source-lineno {
   display: table-cell;
   text-align: right;
   padding-right: 0.25em;
@@ -442,7 +405,7 @@ body {
 div[data-reach-dialog-content][data-testid="moth-dialog"] {
   box-shadow: 0 1px 2px hsla(0, 0%, 0%, 0.16);
   outline: none;
-  font-family: Arial, Helvetica, sans-serif;
+
   font-size: 13px;
   background-color: var(--moth-bg-color-secondary);
   color: var(--moth-color-primary);
@@ -468,51 +431,16 @@ div[data-reach-dialog-overlay][data-testid="moth-dialog-overlay"] {
   z-index: 2147483647;
 }
 
-.moth-button {
-  box-sizing: border-box;
-  box-shadow: 0 1px 2px hsla(0, 0%, 0%, 0.16);
-  border: 1px solid var(--moth-color-secondary);
-  margin: 1px 8px;
-  padding: 0.5em;
-  width: auto;
-  cursor: pointer;
-  overflow: visible;
-  background: inherit;
-  color: inherit;
-  border-radius: 4px;
-  font: inherit;
-  line-height: normal;
-  -webkit-font-smoothing: inherit;
-  -moz-osx-font-smoothing: inherit;
-  -webkit-appearance: none;
-}
-
-.moth-button:hover {
-  background: var(--moth-bg-color-secondary);
-  color: var(--moth-color-accent);
-}
-
-.moth-button:focus {
-  outline: none;
-}
-
-.moth-button:focus-visible {
-  border: 2px solid var(--moth-color-accent) !important;
-  margin: 0px 7px;
-}
-
 q.moth-code,
 code.moth-markdown {
   tab-size: 2;
   padding: 0.2em 0.4em;
   margin: 0;
   line-height: 2;
-  font-size: 14px;
   background-color: var(--moth-bg-color-secondary);
   border: 1px solid var(--moth-color-hover);
   color: var(--moth-color-primary);
   border-radius: 6px;
-  font-family: SFMono-Regular, Consolas, Liberation Mono, Menlo, monospace;
 }
 
 h1.moth-markdown,
@@ -521,21 +449,16 @@ h3.moth-markdown,
 h4.moth-markdown,
 h5.moth-markdown,
 h6.moth-markdown {
-  font-family: Arial, Helvetica, sans-serif;
   color: var(--moth-color-primary);
 }
 
 p.moth-markdown,
 ul.moth-markdown,
 ol.moth-markdown {
-  font-family: Arial, Helvetica, sans-serif;
-  font-size: 14px;
   color: var(--moth-color-primary);
 }
 
 a.moth-markdown {
-  font-family: Arial, Helvetica, sans-serif;
-  font-size: 14px;
   color: var(--moth-color-accent);
 }
 
@@ -617,7 +540,6 @@ blockquote.moth-markdown {
   }
 
   .moth-aside {
-    font-size: 14px;
     flex: 0 0 12em;
     padding: 3em 2em;
     padding-left: calc(2em - 16px);
@@ -695,6 +617,5 @@ blockquote.moth-markdown {
     position: absolute;
     margin-left: 3.1em;
     top: -0.7em;
-    font-size: 14px;
   }
 }

@@ -2,7 +2,7 @@ import { Action as HistoryAction } from "history"
 import { useHotkeys } from "react-hotkeys-hook"
 import { errorMessage, stories as sourceStories } from "virtual:stories"
 
-import "./styles.css"
+import "./styles/styles.css"
 
 import { useEffect, useReducer, useRef } from "react"
 
@@ -119,7 +119,7 @@ export function App() {
 
   return (
     <GlobalMothmanContext.Provider value={{ globalState, dispatch }}>
-      <main className="moth-main">
+      <main className="moth-main flex flex-col">
         {hasStories && !errorMessage && <Story />}
         {hasStories && errorMessage && <StorySyntaxError error={errorMessage} />}
         {!(hasStories || errorMessage) && <StoryNotFoundError />}

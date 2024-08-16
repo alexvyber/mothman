@@ -3,6 +3,7 @@ import React, { useState } from "react"
 import { useMothmanContext } from "../../../../utils/global-context"
 import { Help } from "../../icons"
 import { Modal } from "../../ui/modal"
+import { AddonTooltip } from "../addons-ui"
 import { HotKeys } from "./hotkeys"
 
 export function HelpButton() {
@@ -22,7 +23,9 @@ export function HelpButton() {
           type="button"
         >
           <Help />
-          <span className="moth-addon-tooltip">{text}</span>
+
+          <AddonTooltip text={text} />
+
           <label>About Mothman</label>
         </button>
       </li>
@@ -36,7 +39,7 @@ export function HelpButton() {
 
         {globalState.hotkeys && (
           <>
-            <ul style={{ listStyle: "none", marginLeft: 0, paddingLeft: 0 }}>
+            <ul className="list-none ml-0 pl-0">
               <HotKeys />
             </ul>
 

@@ -9,6 +9,7 @@ import config from "../../../../utils/load-config"
 import { watchers } from "../../../../utils/story-hmr"
 import { A11y } from "../../icons"
 import { Modal } from "../../ui/modal"
+import { AddonBadge, AddonTooltip } from "../addons-ui"
 import { AxeReport } from "./axe-report"
 import { ViolationType } from "./types"
 
@@ -49,35 +50,37 @@ export function A11YButton() {
   })
 
   return (
-    <li>
-      <button
-        aria-label={text}
-        data-testid="addon-a11y"
-        title={text}
-        onClick={openReport}
-        className={showReport ? "a11y-active" : ""}
-        type="button"
-      >
-        <A11y />
-
-        <span className="moth-addon-tooltip">{text}</span>
-
-        <label>Accessibility report</label>
-
-        {violations.length ? <div className="moth-badge">{violations.length}</div> : null}
-
-        <Modal
-          isOpen={showReport}
-          close={() => setShowReport(false)}
-          label="Dialog with the story accessibility report."
+    <>
+      <li>
+        <button
+          aria-label={text}
+          data-testid="addon-a11y"
+          title={text}
+          onClick={openReport}
+          className={showReport ? "a11y-active" : ""}
+          type="button"
         >
-          <AxeReport
-            reportFinished={reportFinished}
-            violations={violations}
-          />
-        </Modal>
-      </button>
-    </li>
+          <A11y />
+
+          <AddonTooltip text={text} />
+
+          <label>Accessibility report</label>
+
+          {violations.length ? <AddonBadge>{violations.length}</AddonBadge> : null}
+        </button>
+      </li>
+
+      <Modal
+        isOpen={showReport}
+        close={() => setShowReport(false)}
+        label="Dialog with the story accessibility report."
+      >
+        <AxeReport
+          reportFinished={reportFinished}
+          violations={violations}
+        />
+      </Modal>
+    </>
   )
 }
 
