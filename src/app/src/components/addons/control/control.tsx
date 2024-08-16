@@ -8,7 +8,7 @@ import { Action, Control, ControlEnum, ControlState } from "../../../types"
 import { Controls } from "../../icons"
 import { Button } from "../../ui/button"
 import { Modal } from "../../ui/modal"
-import { AddonBadge, AddonTooltip } from "../addons-ui"
+import { AddonTriggerButton } from "../addons-ui"
 
 const getInputType = (type?: ControlEnum) => {
   switch (type) {
@@ -362,22 +362,16 @@ export const ControlButton = () => {
   return (
     <>
       <li>
-        <button
+        <AddonTriggerButton
           aria-label={text}
           title={text}
+          data-testid="addon-control"
           onClick={() => setOpen(true)}
           className={open ? "moth-active" : ""}
-          data-testid="addon-control"
-          type="button"
-        >
-          <Controls />
-
-          <AddonTooltip text={text} />
-
-          <label>Story Controls</label>
-
-          {activeControls.length ? <AddonBadge>{activeControls.length}</AddonBadge> : null}
-        </button>
+          Icon={Controls}
+          badge={activeControls.length || null}
+          label="Story Controls"
+        />
       </li>
 
       <Modal

@@ -4,7 +4,7 @@ import { useMothmanContext } from "../../../../utils/global-context"
 import config from "../../../../utils/load-config"
 import { Bulb } from "../../../components/icons"
 import { Action, Theme } from "../../../types"
-import { AddonTooltip } from "../addons-ui"
+import { AddonTriggerButton } from "../addons-ui"
 
 export function ThemeButton() {
   const { globalState, dispatch } = useMothmanContext()
@@ -22,18 +22,16 @@ export function ThemeButton() {
 
   return (
     <li>
-      <button
-        aria-label={globalState.theme === Theme.Light ? darkText : lightText}
-        title={globalState.theme === Theme.Light ? darkText : lightText}
-        onClick={changeTheme}
+      <AddonTriggerButton
         type="button"
-      >
-        <Bulb />
-
-        <AddonTooltip text={globalState.theme === Theme.Light ? darkText : lightText} />
-
-        <label>Switch to {globalState.theme === Theme.Light ? Theme.Dark : Theme.Light} theme</label>
-      </button>
+        title={globalState.theme === Theme.Light ? darkText : lightText}
+        aria-label={globalState.theme === Theme.Light ? darkText : lightText}
+        data-testid="addon-source"
+        className={globalState.source ? "source-active" : ""}
+        onClick={() => dispatch({ type: Action.UpdateSource, payload: !globalState.source })}
+        label={`Switch to  ${globalState.theme === Theme.Light ? Theme.Dark : Theme.Light} theme}`}
+        Icon={Bulb}
+      />
     </li>
   )
 }

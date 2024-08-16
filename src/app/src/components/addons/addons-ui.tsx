@@ -13,3 +13,26 @@ export function AddonBadge({ children }: React.PropsWithChildren) {
     </div>
   )
 }
+
+interface AddonTriggerButtonProps extends React.ComponentProps<"button"> {
+  "data-testid"?: string
+  Icon?: () => JSX.Element
+  label?: string
+  badge?: React.ReactNode
+}
+export function AddonTriggerButton({ Icon, label, badge, ...props }: AddonTriggerButtonProps) {
+  return (
+    <button
+      {...props}
+      type="button"
+    >
+      {Icon && <Icon />}
+
+      {props.title && <AddonTooltip text={props.title} />}
+
+      {label && <label>{label}</label>}
+
+      {badge && <AddonBadge>{badge}</AddonBadge>}
+    </button>
+  )
+}

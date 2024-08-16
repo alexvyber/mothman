@@ -3,7 +3,7 @@ import React, { useState } from "react"
 import { useMothmanContext } from "../../../../utils/global-context"
 import { Help } from "../../icons"
 import { Modal } from "../../ui/modal"
-import { AddonTooltip } from "../addons-ui"
+import { AddonTriggerButton } from "../addons-ui"
 import { HotKeys } from "./hotkeys"
 
 export function HelpButton() {
@@ -15,19 +15,15 @@ export function HelpButton() {
   return (
     <>
       <li>
-        <button
+        <AddonTriggerButton
           aria-label={text}
           title={text}
+          data-testid="addon-control"
           onClick={() => setOpen(true)}
           className={open ? "moth-active" : ""}
-          type="button"
-        >
-          <Help />
-
-          <AddonTooltip text={text} />
-
-          <label>About Mothman</label>
-        </button>
+          Icon={Help}
+          label="About Mothman"
+        />
       </li>
 
       <Modal
@@ -39,7 +35,7 @@ export function HelpButton() {
 
         {globalState.hotkeys && (
           <>
-            <ul className="list-none ml-0 pl-0">
+            <ul className="ml-0 list-none pl-0">
               <HotKeys />
             </ul>
 

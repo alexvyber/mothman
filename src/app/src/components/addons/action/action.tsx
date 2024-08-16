@@ -2,7 +2,7 @@ import { useState } from "react"
 
 import { useMothmanContext } from "../../../../utils/global-context"
 import { Action as ActionIcon } from "../../icons"
-import { AddonBadge, AddonTooltip } from "../addons-ui"
+import { AddonTriggerButton } from "../addons-ui"
 import { ActionModal } from "./action-modal"
 
 export function ActionButton() {
@@ -18,22 +18,16 @@ export function ActionButton() {
   return (
     <>
       <li>
-        <button
+        <AddonTriggerButton
           aria-label={text}
           title={text}
+          data-testid="addon-action"
           onClick={() => setOpen(true)}
           className={isOpen ? "moth-active" : ""}
-          data-testid="addon-action"
-          type="button"
-        >
-          <ActionIcon />
-
-          <AddonTooltip text={text} />
-
-          <label>Actions</label>
-
-          <AddonBadge>{globalState.action.length}</AddonBadge>
-        </button>
+          Icon={ActionIcon}
+          label="Actions"
+          badge={globalState.action.length}
+        />
       </li>
 
       <ActionModal

@@ -2,7 +2,7 @@ import { useMothmanContext } from "../../../../utils/global-context"
 import config from "../../../../utils/load-config"
 import { Action, Mode } from "../../../types"
 import { Preview } from "../../icons"
-import { AddonTooltip } from "../addons-ui"
+import { AddonTriggerButton } from "../addons-ui"
 
 export function ModeButton() {
   const { dispatch } = useMothmanContext()
@@ -11,18 +11,13 @@ export function ModeButton() {
 
   return (
     <li>
-      <button
+      <AddonTriggerButton
         aria-label={text}
         title={text}
         onClick={() => dispatch({ type: Action.UpdateMode, payload: Mode.Preview })}
-        type="button"
-      >
-        <Preview />
-
-        <AddonTooltip text={text} />
-
-        <label>Open fullscreen mode</label>
-      </button>
+        Icon={Preview}
+        label="Open fullscreen mode"
+      />
     </li>
   )
 }

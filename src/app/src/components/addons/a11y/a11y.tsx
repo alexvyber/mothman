@@ -9,7 +9,7 @@ import config from "../../../../utils/load-config"
 import { watchers } from "../../../../utils/story-hmr"
 import { A11y } from "../../icons"
 import { Modal } from "../../ui/modal"
-import { AddonBadge, AddonTooltip } from "../addons-ui"
+import { AddonTriggerButton } from "../addons-ui"
 import { AxeReport } from "./axe-report"
 import { ViolationType } from "./types"
 
@@ -52,22 +52,16 @@ export function A11YButton() {
   return (
     <>
       <li>
-        <button
+        <AddonTriggerButton
           aria-label={text}
           data-testid="addon-a11y"
           title={text}
           onClick={openReport}
           className={showReport ? "a11y-active" : ""}
-          type="button"
-        >
-          <A11y />
-
-          <AddonTooltip text={text} />
-
-          <label>Accessibility report</label>
-
-          {violations.length ? <AddonBadge>{violations.length}</AddonBadge> : null}
-        </button>
+          Icon={A11y}
+          badge={violations.length || null}
+          label="Accessibility report"
+        />
       </li>
 
       <Modal

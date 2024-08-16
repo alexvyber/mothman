@@ -8,7 +8,7 @@ import config from "../../../../utils/load-config"
 import { Action } from "../../../types"
 import { Width } from "../../icons"
 import { Modal } from "../../ui/modal"
-import { AddonTooltip } from "../addons-ui"
+import { AddonTriggerButton } from "../addons-ui"
 
 export function WidthButton() {
   const { globalState, dispatch } = useMothmanContext()
@@ -35,20 +35,16 @@ export function WidthButton() {
   return (
     <>
       <li>
-        <button
+        <AddonTriggerButton
           aria-label={text}
           data-testid="addon-width"
           title={text}
           type="button"
           className={open ? "width-active" : ""}
           onClick={() => setOpen(true)}
-        >
-          <Width />
-
-          <AddonTooltip text={text} />
-
-          <label>Set story width</label>
-        </button>
+          label="Set story width"
+          Icon={Width}
+        />
       </li>
 
       <Modal

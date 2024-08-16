@@ -1,13 +1,13 @@
 import { useHotkeys } from "react-hotkeys-hook"
 
-import React, { useEffect } from "react"
+import React from "react"
 
 import { useMothmanContext } from "../../../../utils/global-context"
 import config from "../../../../utils/load-config"
 import { Action } from "../../../types"
 import { Source } from "../../icons"
 import { Modal } from "../../ui/modal"
-import { AddonTooltip } from "../addons-ui"
+import { AddonTriggerButton } from "../addons-ui"
 import { CodeFrame } from "./code-frame"
 
 export function SourceButton() {
@@ -22,20 +22,16 @@ export function SourceButton() {
   return (
     <>
       <li>
-        <button
+        <AddonTriggerButton
           type="button"
           title={text}
           aria-label={text}
           data-testid="addon-source"
           className={globalState.source ? "source-active" : ""}
           onClick={() => dispatch({ type: Action.UpdateSource, payload: !globalState.source })}
-        >
-          <Source />
-
-          <AddonTooltip text={text} />
-
-          <label>Story Source Code</label>
-        </button>
+          label="Story Source Code"
+          Icon={Source}
+        />
       </li>
 
       <Modal
