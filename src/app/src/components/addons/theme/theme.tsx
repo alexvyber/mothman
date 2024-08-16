@@ -28,7 +28,7 @@ export function ThemeButton() {
         aria-label={globalState.theme === Theme.Light ? darkText : lightText}
         data-testid="addon-source"
         className={globalState.source ? "source-active" : ""}
-        onClick={() => dispatch({ type: Action.UpdateSource, payload: !globalState.source })}
+        onClick={changeTheme}
         label={`Switch to  ${globalState.theme === Theme.Light ? Theme.Dark : Theme.Light} theme}`}
         Icon={Bulb}
       />
