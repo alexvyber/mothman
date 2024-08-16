@@ -53,6 +53,7 @@ export function WidthButton() {
         close={() => setOpen(false)}
       >
         <p>Select story width</p>
+
         <div>
           <input
             value={0}
@@ -62,6 +63,7 @@ export function WidthButton() {
             checked={globalState.width === 0}
             onChange={() => dispatch({ type: Action.UpdateWidth, payload: 0 })}
           />
+
           <label
             htmlFor={"width-unset"}
             style={{ paddingLeft: "8px" }}
@@ -70,26 +72,25 @@ export function WidthButton() {
           </label>
         </div>
 
-        {Object.entries(options).map(([key, value]) => {
-          return (
-            <div key={key}>
-              <input
-                type="radio"
-                name="width"
-                id={`width-${key}`}
-                value={value}
-                checked={globalState.width === value}
-                onChange={() => dispatch({ type: Action.UpdateWidth, payload: value })}
-              />
-              <label
-                htmlFor={`width-${key}`}
-                style={{ paddingLeft: "8px" }}
-              >
-                {value}px - {key}
-              </label>
-            </div>
-          )
-        })}
+        {Object.entries(options).map(([key, value]) => (
+          <div key={key}>
+            <input
+              type="radio"
+              name="width"
+              id={`width-${key}`}
+              value={value}
+              checked={globalState.width === value}
+              onChange={() => dispatch({ type: Action.UpdateWidth, payload: value })}
+            />
+            <label
+              htmlFor={`width-${key}`}
+              style={{ paddingLeft: "8px" }}
+            >
+              {value}px - {key}
+            </label>
+          </div>
+        ))}
+
         <p />
       </Modal>
     </>

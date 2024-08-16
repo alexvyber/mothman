@@ -359,6 +359,16 @@ export const ControlButton = () => {
     return null
   }
 
+  const onResetDefaults = () => {
+    const controls = globalState.control
+
+    for (const [control, controlValue] of Object.entries(globalState.control)) {
+      Object.assign(controls[control], { value: controlValue.defaultValue })
+    }
+
+    dispatch({ type: Action.UpdateControl, payload: controls })
+  }
+
   return (
     <>
       <li>
@@ -383,30 +393,17 @@ export const ControlButton = () => {
           <tbody>
             {Object.keys(globalState.control)
               .sort()
-              .map((controlKey) => {
-                return (
-                  <ControlAddon
-                    key={controlKey}
-                    controlKey={controlKey}
-                  />
-                )
-              })}
+              .map((controlKey) => (
+                <ControlAddon
+                  key={controlKey}
+                  controlKey={controlKey}
+                />
+              ))}
           </tbody>
         </table>
 
         <Button
-          onClick={() => {
-            const controls: ControlState = {}
-
-            Object.keys(globalState.control).forEach((control) => {
-              controls[control] = {
-                ...globalState.control[control],
-                value: globalState.control[control].defaultValue,
-              }
-            })
-
-            dispatch({ type: Action.UpdateControl, payload: controls })
-          }}
+          onClick={onResetDefaults}
           type="button"
         >
           Reset to defaults

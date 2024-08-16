@@ -77,7 +77,7 @@ export function CodeHighlight({ code, theme, language = "tsx", locStart, locEnd,
                 key={i}
                 id={`mothman_loc_${i + 1}`}
                 {...getLineProps({ line, key: i })}
-                style={{ display: "table-row" }}
+                className="table-row"
               >
                 <span
                   className="moth-addon-source-lineno"
@@ -89,7 +89,7 @@ export function CodeHighlight({ code, theme, language = "tsx", locStart, locEnd,
                 >
                   {i + 1}
                 </span>
-                <div style={{ display: "table-cell", paddingLeft: "0.5em" }}>
+                <div className="table-cell pl-2">
                   {line.map((token, key) => (
                     <span
                       key={key}

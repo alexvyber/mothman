@@ -707,6 +707,10 @@ video {
   padding-left: 0px;
 }
 
+.pl-2 {
+  padding-left: 0.5rem;
+}
+
 .text-xs {
   font-size: 0.75rem;
   line-height: 1rem;
