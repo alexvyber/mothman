@@ -2,112 +2,15 @@ import { useHotkeys } from "react-hotkeys-hook"
 
 import React, { useEffect, useState } from "react"
 
+import { getErrorMessage } from "../../../../../shared/get-error-message"
 import { logger } from "../../../../../shared/logger"
 import { useMothmanContext } from "../../../../utils/global-context"
 import config from "../../../../utils/load-config"
 import { watchers } from "../../../../utils/story-hmr"
 import { A11y } from "../../icons"
 import { Modal } from "../../ui/modal"
-
-type ViolationType = {
-  id: string
-  impact: string
-  description: string
-  help: string
-  helpUrl: string
-  nodes: { html: string }[]
-}
-
-async function runAxe(
-  setViolations: React.Dispatch<React.SetStateAction<ViolationType[]>>,
-  setReportFinished: React.Dispatch<React.SetStateAction<boolean>>,
-  element: HTMLElement | null
-) {
-  const axe = await import("axe-core")
-
-  try {
-    const results = await axe.default.run(document.getElementsByTagName("main") as any)
-    setViolations(results.violations as ViolationType[])
-    setReportFinished(true)
-    if (element) element.setAttribute("aria-hidden", "true")
-  } catch (error) {
-    // do nothing
-  }
-}
-
-const Violation = ({ violation }: { violation: ViolationType }) => {
-  const [more, setMore] = useState(false)
-
-  return (
-    <li>
-      {violation.help} ({violation.nodes.length}).{" "}
-      {!more && (
-        <a
-          href="#"
-          onClick={() => setMore(true)}
-        >
-          Show details
-        </a>
-      )}
-      {more && (
-        <>
-          <ul>
-            <li>ID: {violation.id}</li>
-            <li>Impact: {violation.impact}</li>
-            <li>Description: {violation.description}</li>
-            <li>
-              <a href={violation.helpUrl}>Documentation</a>
-            </li>
-          </ul>
-          <p>Violating nodes:</p>
-          <ul>
-            {violation.nodes.map((node) => (
-              <li key={node.html}>
-                <code className="moth-code">{node.html}</code>
-              </li>
-            ))}
-          </ul>
-          <p>
-            <a
-              href="#"
-              onClick={() => setMore(false)}
-            >
-              Hide details
-            </a>
-          </p>
-        </>
-      )}
-    </li>
-  )
-}
-
-const AxeReport = ({ reportFinished, violations }: { reportFinished: boolean; violations: ViolationType[] }) => {
-  if (!reportFinished) return <p>Report is loading...</p>
-
-  if (violations.length === 0) {
-    return (
-      <p>
-        There are no <a href="https://github.com/dequelabs/axe-core">axe</a> accessibility violations. Good job!
-      </p>
-    )
-  }
-
-  return (
-    <>
-      <h3>
-        There are {violations.length} <a href="https://github.com/dequelabs/axe-core">axe</a> accessibility violations
-      </h3>
-      <ul>
-        {violations.map((violation) => (
-          <Violation
-            key={violation.id}
-            violation={violation}
-          />
-        ))}
-      </ul>
-    </>
-  )
-}
+import { AxeReport } from "./axe-report"
+import { ViolationType } from "./types"
 
 export const A11YButton = () => {
   const { globalState } = useMothmanContext()
@@ -176,4 +79,23 @@ export const A11YButton = () => {
       </button>
     </li>
   )
+}
+
+async function runAxe(
+  setViolations: React.Dispatch<React.SetStateAction<ViolationType[]>>,
+  setReportFinished: React.Dispatch<React.SetStateAction<boolean>>,
+  element: HTMLElement | null
+) {
+  const axe = await import("axe-core")
+
+  try {
+    const results = await axe.default.run(document.getElementsByTagName("main") as any)
+
+    setViolations(results.violations as ViolationType[])
+    setReportFinished(true)
+
+    if (element) element.setAttribute("aria-hidden", "true")
+  } catch (error) {
+    logger.warn(`Error getting axe report: ${getErrorMessage(error)}`)
+  }
 }

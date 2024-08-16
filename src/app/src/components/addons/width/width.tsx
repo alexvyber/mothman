@@ -32,65 +32,67 @@ export const WidthButton = () => {
   }
 
   return (
-    <li>
-      <button
-        aria-label={text}
-        data-testid="addon-width"
-        title={text}
-        type="button"
-        className={open ? "width-active" : ""}
-        onClick={() => setOpen(true)}
-      >
-        <Width />
-        <span className="moth-addon-tooltip">{text}</span>
-        <label>Set story width</label>
-
-        <Modal
-          isOpen={open}
-          label="Dialog with the story width selector."
-          close={() => setOpen(false)}
+    <>
+      <li>
+        <button
+          aria-label={text}
+          data-testid="addon-width"
+          title={text}
+          type="button"
+          className={open ? "width-active" : ""}
+          onClick={() => setOpen(true)}
         >
-          <p>Select story width</p>
-          <div>
-            <input
-              value={0}
-              type="radio"
-              name="width"
-              id={"width-unset"}
-              checked={globalState.width === 0}
-              onChange={() => dispatch({ type: Action.UpdateWidth, payload: 0 })}
-            />
-            <label
-              htmlFor={"width-unset"}
-              style={{ paddingLeft: "8px" }}
-            >
-              unset
-            </label>
-          </div>
+          <Width />
+          <span className="moth-addon-tooltip">{text}</span>
+          <label>Set story width</label>
+        </button>
+      </li>
 
-          {Object.entries(options).map(([key, value]) => {
-            return (
-              <div key={key}>
-                <input
-                  type="radio"
-                  name="width"
-                  id={`width-${key}`}
-                  value={value}
-                  checked={globalState.width === value}
-                  onChange={() => dispatch({ type: Action.UpdateWidth, payload: value })}
-                />
-                <label
-                  htmlFor={`width-${key}`}
-                  style={{ paddingLeft: "8px" }}
-                >
-                  {value}px - {key}
-                </label>
-              </div>
-            )
-          })}
-          <p />
-        </Modal>
-      </button>
-    </li>
+      <Modal
+        isOpen={open}
+        label="Dialog with the story width selector."
+        close={() => setOpen(false)}
+      >
+        <p>Select story width</p>
+        <div>
+          <input
+            value={0}
+            type="radio"
+            name="width"
+            id={"width-unset"}
+            checked={globalState.width === 0}
+            onChange={() => dispatch({ type: Action.UpdateWidth, payload: 0 })}
+          />
+          <label
+            htmlFor={"width-unset"}
+            style={{ paddingLeft: "8px" }}
+          >
+            unset
+          </label>
+        </div>
+
+        {Object.entries(options).map(([key, value]) => {
+          return (
+            <div key={key}>
+              <input
+                type="radio"
+                name="width"
+                id={`width-${key}`}
+                value={value}
+                checked={globalState.width === value}
+                onChange={() => dispatch({ type: Action.UpdateWidth, payload: value })}
+              />
+              <label
+                htmlFor={`width-${key}`}
+                style={{ paddingLeft: "8px" }}
+              >
+                {value}px - {key}
+              </label>
+            </div>
+          )
+        })}
+        <p />
+      </Modal>
+    </>
   )
 }
