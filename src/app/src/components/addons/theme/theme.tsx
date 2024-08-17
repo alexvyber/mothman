@@ -30,7 +30,7 @@ export function ThemeButton() {
         className={globalState.source ? "source-active" : ""}
         onClick={changeTheme}
         label={`Switch to  ${globalState.theme === Theme.Light ? Theme.Dark : Theme.Light} theme}`}
-        Icon={Bulb}
+        icon={Bulb}
       />
     </li>
   )

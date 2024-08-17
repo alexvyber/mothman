@@ -21,7 +21,7 @@ export function HelpButton() {
           data-testid="addon-control"
           onClick={() => setOpen(true)}
           className={open ? "moth-active" : ""}
-          Icon={Help}
+          icon={Help}
           label="About Mothman"
         />
       </li>

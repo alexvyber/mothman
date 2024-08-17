@@ -378,7 +378,7 @@ export const ControlButton = () => {
           data-testid="addon-control"
           onClick={() => setOpen(true)}
           className={open ? "moth-active" : ""}
-          Icon={Controls}
+          icon={Controls}
           badge={activeControls.length || null}
           label="Story Controls"
         />

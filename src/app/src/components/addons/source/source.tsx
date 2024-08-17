@@ -30,7 +30,7 @@ export function SourceButton() {
           className={globalState.source ? "source-active" : ""}
           onClick={() => dispatch({ type: Action.UpdateSource, payload: !globalState.source })}
           label="Story Source Code"
-          Icon={Source}
+          icon={Source}
         />
       </li>
 

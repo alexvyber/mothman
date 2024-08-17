@@ -58,7 +58,7 @@ export function A11YButton() {
           title={text}
           onClick={openReport}
           className={showReport ? "a11y-active" : ""}
-          Icon={A11y}
+          icon={A11y}
           badge={violations.length || null}
           label="Accessibility report"
         />

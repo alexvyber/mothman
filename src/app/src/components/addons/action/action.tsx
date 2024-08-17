@@ -24,7 +24,7 @@ export function ActionButton() {
           data-testid="addon-action"
           onClick={() => setOpen(true)}
           className={isOpen ? "moth-active" : ""}
-          Icon={ActionIcon}
+          icon={ActionIcon}
           label="Actions"
           badge={globalState.action.length}
         />

@@ -43,7 +43,7 @@ export function WidthButton() {
           className={open ? "width-active" : ""}
           onClick={() => setOpen(true)}
           label="Set story width"
-          Icon={Width}
+          icon={Width}
         />
       </li>
 

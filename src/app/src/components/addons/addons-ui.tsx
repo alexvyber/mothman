@@ -16,11 +16,11 @@ export function AddonBadge({ children }: React.PropsWithChildren) {
 
 interface AddonTriggerButtonProps extends React.ComponentProps<"button"> {
   "data-testid"?: string
-  Icon?: () => JSX.Element
+  icon?: () => JSX.Element
   label?: string
   badge?: React.ReactNode
 }
-export function AddonTriggerButton({ Icon, label, badge, ...props }: AddonTriggerButtonProps) {
+export function AddonTriggerButton({ icon: Icon, label, badge, ...props }: AddonTriggerButtonProps) {
   return (
     <button
       {...props}

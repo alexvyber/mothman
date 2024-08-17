@@ -15,7 +15,7 @@ export function ModeButton() {
         aria-label={text}
         title={text}
         onClick={() => dispatch({ type: Action.UpdateMode, payload: Mode.Preview })}
-        Icon={Preview}
+        icon={Preview}
         label="Open fullscreen mode"
       />
     </li>
