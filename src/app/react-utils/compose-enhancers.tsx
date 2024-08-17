@@ -10,8 +10,17 @@ import { Msw } from "./msw"
 
 export default function composeEnhancers(module: any, storyName: string) {
   let decorators = [] as StoryDecorator[]
-  let parameters = {} as Record<string, any>
   let mswHandlers = [] as RequestHandler[]
+  const parameters = {} as Record<string, any>
+
+  const props = {
+    args: { ...args },
+    argTypes: { ...argTypes },
+    component: module[storyName],
+  }
+
+  if (module.default?.parameters) Object.assign(parameters, module.default.parameters)
+  if (module[storyName].parameters) Object.assign(parameters, module[storyName].parameters)
 
   if (module.default?.msw) {
     mswHandlers = module.default.msw
@@ -21,21 +30,11 @@ export default function composeEnhancers(module: any, storyName: string) {
     mswHandlers = module[storyName].msw
   }
 
-  const props = {
-    args: {
-      ...args,
-      ...(module.default?.args ? module.default.args : {}),
-      ...(module[storyName].args ? module[storyName].args : {}),
-    },
+  if (module?.default?.args) Object.assign(props.args, module.default.args)
+  if (module[storyName]?.args) Object.assign(props.args, module[storyName].args)
 
-    argTypes: {
-      ...argTypes,
-      ...(module.default?.argTypes ? module.default.argTypes : {}),
-      ...(module[storyName].argTypes ? module[storyName].argTypes : {}),
-    },
-
-    component: module[storyName],
-  }
+  if (module.default?.argTypes) Object.assign(props.argTypes, module.default.argTypes)
+  if (module[storyName]?.argTypes) Object.assign(props.argTypes, module[storyName].argTypes)
 
   if (module[storyName] && Array.isArray(module[storyName].decorators)) {
     decorators = [...decorators, ...module[storyName].decorators]
@@ -43,11 +42,6 @@ export default function composeEnhancers(module: any, storyName: string) {
 
   if (module.default && Array.isArray(module.default.decorators)) {
     decorators = [...decorators, ...module.default.decorators]
-  }
-
-  parameters = {
-    ...(module.default?.parameters ? module.default.parameters : {}),
-    ...(module[storyName].parameters ? module[storyName].parameters : {}),
   }
 
   return function RenderDecoratedStory() {

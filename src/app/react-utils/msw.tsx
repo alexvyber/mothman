@@ -2,7 +2,11 @@ import type { RequestHandler } from "msw"
 
 import React, { useEffect, useState } from "react"
 
-export function Msw({ children, msw }: { msw: RequestHandler[] } & React.PropsWithChildren) {
+interface Props extends React.PropsWithChildren {
+  msw: RequestHandler[]
+}
+
+export function Msw({ children, msw }: Props) {
   const [ready, setReady] = useState(false)
 
   useEffect(() => {

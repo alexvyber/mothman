@@ -54,8 +54,7 @@ export function getHref(params: Partial<GlobalState> = {}): string {
 
   for (const [key, value] of Object.entries(params)) {
     if (!(key === "control")) {
-      // @ts-expect-error
-      encodedParams[key] = value
+      Object.assign(encodedParams, { [key]: value })
     }
 
     if (key === "control") {
