@@ -66,7 +66,7 @@ export function WidthButton() {
 
           <label
             htmlFor={"width-unset"}
-            style={{ paddingLeft: "8px" }}
+            className="pl2"
           >
             unset
           </label>
@@ -84,7 +84,7 @@ export function WidthButton() {
             />
             <label
               htmlFor={`width-${key}`}
-              style={{ paddingLeft: "8px" }}
+              className="pl2"
             >
               {value}px - {key}
             </label>

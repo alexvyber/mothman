@@ -133,7 +133,7 @@ export const Bulb = () => {
 
 export const Page = () => {
   return (
-    <div style={{ width: "10px", marginInlineEnd: "0.5em", flexShrink: 0 }}>
+    <div className="me-2 w-2.5 shrink-0">
       <svg
         fill="currentColor"
         viewBox="0 0 768 1024"
@@ -187,7 +187,7 @@ export const Down = ({ rotate }: { rotate?: boolean }) => {
 
 export const Right = () => {
   return (
-    <div style={{ width: "6px", marginInlineEnd: "0.65em" }}>
+    <div className="me-[0.65em] w-1.5">
       <svg
         fill="currentColor"
         viewBox="0 0 574 1024"

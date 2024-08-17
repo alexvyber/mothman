@@ -20,7 +20,7 @@ export function HotKeys() {
     ([actionKey, actionValue]) =>
       actionValue.length > 0 && (
         <li key={actionKey}>
-          <span style={{ display: "inline-block", width: "200px" }}>
+          <span className="inline-block w-52">
             {actionValue.map((hotkey: string, i: number) => (
               <span key={hotkey}>
                 <FormattedHotkey hotkey={hotkey} />
@@ -29,7 +29,7 @@ export function HotKeys() {
             ))}
           </span>
 
-          <span style={{ display: "inline-block" }}>{hotkeyLegends[actionKey as keyof typeof hotkeyLegends]}</span>
+          <span className="inline-block">{hotkeyLegends[actionKey as keyof typeof hotkeyLegends]}</span>
         </li>
       )
   )

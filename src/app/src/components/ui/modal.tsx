@@ -23,11 +23,11 @@ export function Modal({ children, close, isOpen, label, maxWidth = "40em" }: Pro
         data-testid="moth-dialog"
         style={{ maxWidth }}
       >
-        <div style={{ position: "absolute", insetInlineEnd: "-6px", top: "0px" }}>
+        <div className="absolute end-1.5 top-0">
           <Button
             onClick={close}
             aria-label="Close modal"
-            style={{ height: "36px", width: "36px", borderColor: "transparent", boxShadow: "none" }}
+            className="h-9 w-9 border-none shadow-none"
           >
             <Close />
           </Button>

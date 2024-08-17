@@ -174,7 +174,7 @@ const ControlAddon = ({ controlKey }: { controlKey: string }) => {
                 />
                 <label
                   htmlFor={`${controlKey}-${String(option)}`}
-                  style={{ marginLeft: "0.3em" }}
+                  className="ml-[0.3em]"
                 >
                   {String(label)}
                 </label>

@@ -35,8 +35,8 @@ export function CodeHighlight({ code, theme, language = "tsx", locStart, locEnd,
         theme={themeProp}
         children={({ className, style, tokens, getTokenProps }) => (
           <div
-            className={className}
-            style={{ ...style, textAlign: "left", margin: "0.5em 0 1em 0", padding: "1em" }}
+            className={`mx-0 mb-4 mt-2 p-4 text-left ${className}`}
+            style={style}
           >
             {tokens.map((line, i) => (
               <div key={i}>
@@ -62,15 +62,8 @@ export function CodeHighlight({ code, theme, language = "tsx", locStart, locEnd,
         theme={themeProp}
         children={({ className, style, tokens, getLineProps, getTokenProps }) => (
           <pre
-            className={className}
-            style={{
-              ...style,
-              textAlign: "left",
-              margin: "0.5em 0 1em 0",
-              padding: "1em 0",
-              overflow: "auto",
-              maxHeight: "50vh",
-            }}
+            className={`mx-0 mb-4 mt-2 max-h-[50vh] overflow-auto text-left ${className}`}
+            style={style}
           >
             {tokens.map((line, i) => (
               <div

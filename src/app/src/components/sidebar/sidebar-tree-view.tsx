@@ -208,7 +208,7 @@ export function TreeView({ stories, story, searchActive, searchRef, setTreeRootR
   return (
     <ul
       role="tree"
-      style={{ marginInlineStart: "-6px" }}
+      className="-ms-1.5"
       ref={setTreeRootRef}
     >
       <NavSection

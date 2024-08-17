@@ -60,12 +60,12 @@ export function Story() {
           width={width}
           mode={globalState.mode}
         >
-          {/* <SynchronizeHead
+          <SynchronizeHead
             active={(iframeActive || width > 0) && globalState.mode !== Mode.Preview}
             width={width}
-          > */}
-          {React.createElement(storyData.component)}
-          {/* </SynchronizeHead> */}
+          >
+            {React.createElement(storyData.component)}
+          </SynchronizeHead>
         </StoryFrame>
       </Suspense>
     </ErrorBoundary>
