@@ -49,7 +49,7 @@ export function getParentId(nodes: StoryTree, nodeId: string, parentId: string |
   return null
 }
 
-export const getPrevId = (nodes: StoryTree, nodeId: string, parentId: string | null): string | null => {
+export function getPrevId(nodes: StoryTree, nodeId: string, parentId: string | null): string | null {
   for (let i = 0; i < nodes.length; i++) {
     if (nodes[i].id === nodeId) {
       if (i === 0) {
@@ -58,6 +58,7 @@ export const getPrevId = (nodes: StoryTree, nodeId: string, parentId: string | n
 
       return getLastLeafId(nodes[i - 1])
     }
+
     if (nodes[i].isExpanded && nodes[i].children && nodes[i].children.length) {
       const foundId = getPrevId(nodes[i].children, nodeId, nodes[i].id)
 
@@ -70,7 +71,7 @@ export const getPrevId = (nodes: StoryTree, nodeId: string, parentId: string | n
   return null
 }
 
-export const getSubtree = (nodes: StoryTree, nodeId: string): StoryTree => {
+export function getSubtree(nodes: StoryTree, nodeId: string): StoryTree {
   for (let i = 0; i < nodes.length; i++) {
     if (nodes[i].id === nodeId) {
       return nodes[i].children
@@ -86,7 +87,7 @@ export const getSubtree = (nodes: StoryTree, nodeId: string): StoryTree => {
   return []
 }
 
-export const getFirstLink = (nodes: StoryTree, nodeId: string): StoryTreeItem => {
+export function getFirstLink(nodes: StoryTree, nodeId: string): StoryTreeItem {
   if (nodes[0].isLinkable) {
     return nodes[0]
   }
@@ -94,13 +95,14 @@ export const getFirstLink = (nodes: StoryTree, nodeId: string): StoryTreeItem =>
   return getFirstLink(nodes[0].children, nodeId)
 }
 
-export const getFirstChildId = (nodes: StoryTree, nodeId: string): string | null => {
+export function getFirstChildId(nodes: StoryTree, nodeId: string): string | null {
   for (let i = 0; i < nodes.length; i++) {
     if (nodes[i].id === nodeId) {
       if (nodes[i].isExpanded && nodes[i].children && nodes[i].children.length) {
         return nodes[i].children[0].id
       }
     }
+
     if (nodes[i].isExpanded && nodes[i].children && nodes[i].children.length) {
       const foundId = getFirstChildId(nodes[i].children, nodeId)
 
@@ -112,7 +114,7 @@ export const getFirstChildId = (nodes: StoryTree, nodeId: string): string | null
   return null
 }
 
-export const getNextId = (nodes: StoryTree, nodeId: string, closestOmmer: string | null): string | null => {
+export function getNextId(nodes: StoryTree, nodeId: string, closestOmmer: string | null): string | null {
   for (let i = 0; i < nodes.length; i++) {
     if (nodes[i].id === nodeId) {
       if (nodes[i].isExpanded && nodes[i].children && nodes[i].children.length) {
@@ -138,7 +140,7 @@ export const getNextId = (nodes: StoryTree, nodeId: string, closestOmmer: string
   return null
 }
 
-export const getEndId = (nodes: StoryTree): string => {
+export function getEndId(nodes: StoryTree): string {
   const endNode = nodes[nodes.length - 1]
 
   if (endNode.isExpanded && endNode.children && endNode.children.length) {
@@ -148,7 +150,7 @@ export const getEndId = (nodes: StoryTree): string => {
   return endNode.id
 }
 
-export const toggleIsExpanded = (arr: StoryTree, toggledNode: StoryTreeItem): StoryTree => {
+export function toggleIsExpanded(arr: StoryTree, toggledNode: StoryTreeItem): StoryTree {
   return arr.map((node, order) => {
     const newNode = { ...node }
     if (newNode.id === toggledNode.id) {

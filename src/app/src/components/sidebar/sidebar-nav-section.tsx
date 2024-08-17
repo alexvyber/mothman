@@ -20,7 +20,7 @@ interface Props {
   treeItemRefs: TreeItemRefs
 }
 
-export const NavSection = ({
+export function NavSection({
   tree,
   fullTree,
   story,
@@ -29,32 +29,31 @@ export const NavSection = ({
   onKeyDownFn,
   selectedItemId,
   treeItemRefs,
-}: Props) => {
+}: Props) {
   return tree.map((treeProps) => (
     <li
       role="treeitem"
       onDragStart={preventDefault}
-      onKeyDown={(e) => onKeyDownFn(e, treeProps)}
+      onKeyDown={(event) => onKeyDownFn(event, treeProps)}
       aria-expanded={treeProps.isExpanded}
       title={treeProps.name}
       tabIndex={treeProps.id === selectedItemId && !treeProps.isLinkable ? 0 : -1}
       ref={treeProps.isLinkable ? undefined : (element) => (treeItemRefs.current[treeProps.id] = element)}
       key={treeProps.id}
-      className={`${treeProps.isLinkable ? "moth-linkable" : ""} ${treeProps.id === story ? "moth-active" : ""}`}
-      style={treeProps.isLinkable ? {} : { marginTop: "0.5em" }}
+      className={`${treeProps.isLinkable ? "moth-linkable mt-2" : ""} ${treeProps.id === story ? "moth-active" : ""}`}
     >
       {treeProps.isLinkable && (
-        <div style={{ display: "flex" }}>
+        <div className="flex">
           <Page />
 
           <a
             tabIndex={treeProps.id === selectedItemId ? 0 : -1}
             ref={(element) => (treeItemRefs.current[treeProps.id] = element)}
             href={getHref({ story: treeProps.id })}
-            onKeyDown={(e) => story !== treeProps.id && onKeyDownFn(e, treeProps)}
-            onClick={(e) => {
-              if (!(e.ctrlKey || e.metaKey)) {
-                e.preventDefault()
+            onKeyDown={(event) => story !== treeProps.id && onKeyDownFn(event, treeProps)}
+            onClick={(event) => {
+              if (!(event.ctrlKey || event.metaKey)) {
+                event.preventDefault()
                 story !== treeProps.id && updateStory(treeProps.id)
               }
             }}
@@ -66,13 +65,13 @@ export const NavSection = ({
 
       {!treeProps.isLinkable && (
         <div
-          style={{ display: "flex", cursor: "pointer" }}
           title={treeProps.name}
           onClick={() => onItemClick(treeProps)}
+          className="flex cursor-pointer"
         >
           <Down rotate={!treeProps.isExpanded} />
 
-          <div style={{ textOverflow: "ellipsis", overflow: "hidden", whiteSpace: "nowrap" }}>{treeProps.name}</div>
+          <div className="text overflow-hidden text-ellipsis whitespace-nowrap">{treeProps.name}</div>
         </div>
       )}
 

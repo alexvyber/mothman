@@ -10,7 +10,7 @@ import { TreeView } from "./sidebar-tree-view"
 import { debounce } from "./sidebar-utils"
 
 const DEFAULT_WIDTH = 240
-const MIN_WIDTH = 192
+const MIN_WIDTH = 128 + 32
 const MAX_WIDTH = 920
 
 const debouncedUpdateSettings = debounce(updateSettings, 250)
@@ -31,7 +31,8 @@ export function Sidebar({ stories }: Props) {
   const treeRootRef = useRef<HTMLUListElement | null>(null)
 
   useEffect(() => {
-    // @ts-expect-error
+    if (!handleRef?.current?.parentElement) return
+
     const parentStyles = window.getComputedStyle(handleRef.current.parentElement)
 
     const direction = parentStyles.getPropertyValue("flex-direction")
@@ -84,7 +85,7 @@ export function Sidebar({ stories }: Props) {
     }
   }, [resizeActive, setResizeActive, setWidth, handleRef.current])
 
-  useHotkeys(config.hotkeys.search, () => (searchElRef.current as any as HTMLInputElement).focus(), {
+  useHotkeys(config.hotkeys.search, () => (searchElRef.current as unknown as HTMLInputElement).focus(), {
     preventDefault: true,
     enabled: globalState.hotkeys,
   })
@@ -102,11 +103,11 @@ export function Sidebar({ stories }: Props) {
     }
   }
 
-  const focus: React.KeyboardEventHandler<HTMLInputElement> = (e) => {
-    e.key === "ArrowDown" && (treeRootRef?.current?.firstChild as HTMLLIElement | undefined)?.focus?.()
+  const focus: React.KeyboardEventHandler<HTMLInputElement> = (event) => {
+    event.key === "ArrowDown" && (treeRootRef?.current?.firstChild as HTMLLIElement | undefined)?.focus?.()
   }
 
-  const onSearchChange: React.ChangeEventHandler<HTMLInputElement> = (e) => setSearch(e.target.value)
+  const onSearchChange: React.ChangeEventHandler<HTMLInputElement> = (event) => setSearch(event.target.value)
 
   const treeRootRefChange = (node: HTMLUListElement | null) => (treeRootRef.current = node)
 

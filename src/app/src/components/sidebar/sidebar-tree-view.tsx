@@ -32,19 +32,17 @@ interface Props {
   searchActive?: boolean
   hotkeys: boolean
 }
-
-export const TreeView = ({ stories, story, searchActive, searchRef, setTreeRootRef, hotkeys }: Props) => {
+export function TreeView({ stories, story, searchActive, searchRef, setTreeRootRef, hotkeys }: Props) {
   const { globalState, dispatch } = useMothmanContext()
 
-  const treeItemRefs: TreeItemRefs = useRef({})
-
   const [tree, setTree] = useState(getStoryTree(stories, story, searchActive))
+  const [selectedItemId, setSelectedItemId] = useState<string | null>(tree.length && tree[0]?.id ? tree[0].id : null)
+
+  const treeItemRefs: TreeItemRefs = useRef({})
 
   useEffect(() => {
     setTree(getStoryTree(stories, story, searchActive))
   }, [stories.join(",")])
-
-  const [selectedItemId, setSelectedItemId] = useState<string | null>(tree.length && tree[0]?.id ? tree[0].id : null)
 
   const focusSelectedItem = (id: string | null) => {
     if (id && treeItemRefs && treeItemRefs.current[id]) {
@@ -193,7 +191,9 @@ export const TreeView = ({ stories, story, searchActive, searchRef, setTreeRootR
   const onItemClick = (item: StoryTreeItem) => {
     const newTree = toggleIsExpanded(tree, item)
     const firstChildLink = getFirstLink(getSubtree(newTree, item.id), item.id)
+
     firstChildLink && story !== firstChildLink.id && firstChildLink.isExpanded && updateStory(firstChildLink.id)
+
     setTree(newTree)
   }
 
