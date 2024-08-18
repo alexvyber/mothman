@@ -55,6 +55,7 @@ export default function composeEnhancers(module: any, storyName: string) {
       ),
       []
     )
+
     if (decorators.length === 0) return <WithArgs />
 
     const getBindedDecorator = (i: number) => {
@@ -62,7 +63,7 @@ export default function composeEnhancers(module: any, storyName: string) {
         const args = {} as Record<string, any>
 
         for (const [key, entry] of Object.entries(globalState.control)) {
-          args[key] = entry.value
+          Object.assign(args, { [key]: entry.value })
         }
 
         const decorator = decorators[i]

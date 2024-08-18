@@ -468,11 +468,11 @@ blockquote.moth-markdown {
   margin-left: 0;
 }
 
-.moth-addon-modal-body {
+/* .moth-addon-modal-body {
   max-height: 80vh;
   overflow: auto;
   tab-size: 2;
-}
+} */
 
 .moth-addon-modal-body ul {
   list-style: square;

@@ -20,12 +20,11 @@ const ALLOWED_ARGTYPES = [
   "boolean",
 ]
 
-function ArgsProvider({ component, args, argTypes }: { component: any; args: any; argTypes: any }) {
+export default function ArgsProvider({ component, args, argTypes }: { component: any; args: any; argTypes: any }) {
   const { globalState, dispatch } = useMothmanContext()
 
-  const actionLogger = (name: string) => (event: Event) => {
+  const actionLogger = (name: string) => (event: Event) =>
     dispatch({ type: Action.UpdateAction, payload: { value: { name, event }, clear: false } })
-  }
 
   useEffect(() => {
     const controls = {} as ControlState
@@ -105,11 +104,10 @@ function ArgsProvider({ component, args, argTypes }: { component: any; args: any
         if (argValue.control.type === "background") {
           bgControls++
 
-          if (bgControls > 1) {
+          if (bgControls > 1)
             throw new Error(
               "There can be only single argType with the type background since it's used to change Mothman's background color."
             )
-          }
         }
 
         Object.assign(controls, {
@@ -144,9 +142,7 @@ function ArgsProvider({ component, args, argTypes }: { component: any; args: any
         ([key, entry]) => !globalState.control[key] || entry.value !== globalState.control[key].value
       )
 
-      if (shouldUpdate) {
-        dispatch({ type: Action.UpdateControl, payload: controls })
-      }
+      if (shouldUpdate) dispatch({ type: Action.UpdateControl, payload: controls })
     } else if (!globalState.controlInitialized) {
       dispatch({ type: Action.UpdateControlIntialized, payload: true })
     }
@@ -156,6 +152,7 @@ function ArgsProvider({ component, args, argTypes }: { component: any; args: any
     if (argTypes?.[key]?.mapping && Object.prototype.hasOwnProperty.call(argTypes[key].mapping, value)) {
       return argTypes[key].mapping[value]
     }
+
     return value
   }
 
@@ -163,17 +160,14 @@ function ArgsProvider({ component, args, argTypes }: { component: any; args: any
 
   for (const key of Object.keys(globalState.control)) {
     if (Array.isArray(globalState.control[key].value)) {
-      props[key] = globalState.control[key].value.map((value) => mappingValue(key, value))
+      const value = globalState.control[key].value.map((value) => mappingValue(key, value))
+      Object.assign(props, { [key]: value })
     } else {
-      props[key] = mappingValue(key, globalState.control[key].value)
+      Object.assign(props, { [key]: mappingValue(key, globalState.control[key].value) })
     }
   }
 
-  if (!globalState.controlInitialized) {
-    return null
-  }
+  if (!globalState.controlInitialized) return null
 
   return createElement(component, props)
 }
-
-export default ArgsProvider

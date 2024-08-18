@@ -32,7 +32,7 @@ export function Modal({ children, close, isOpen, label, maxWidth = "40em" }: Pro
             <Close />
           </Button>
         </div>
-        <div className="moth-addon-modal-body">{children}</div>
+        <div className="moth-addon-modal-body max-h-[80vh] overflow-auto">{children}</div>
       </DialogContent>
     </DialogOverlay>
   )

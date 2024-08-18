@@ -11,4 +11,6 @@ export const GlobalMothmanContext: React.Context<GlobalMothmanContextType> = cre
   null as any
 )
 
-export const useMothmanContext = () => useContext<GlobalMothmanContextType>(GlobalMothmanContext)
+export function useMothmanContext() {
+  return useContext<GlobalMothmanContextType>(GlobalMothmanContext)
+}

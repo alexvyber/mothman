@@ -6,8 +6,9 @@ import { logger } from "../../shared/logger"
 import { Control, GlobalState } from "../src/types"
 import config from "./load-config"
 
-export const history = createBrowserHistory()
 export { Action } from "history"
+
+export const history = createBrowserHistory()
 
 export function resetParams() {
   history.push(getHref())
@@ -63,9 +64,7 @@ export function getHref(params: Partial<GlobalState> = {}): string {
         const arg = entry
 
         // a special case, actions are handled by the addon-action
-        if (arg.type === Control.Action) {
-          continue
-        }
+        if (arg.type === Control.Action) continue
 
         try {
           const isValueDefault = JSON.stringify(arg.value) === JSON.stringify(arg.defaultValue)

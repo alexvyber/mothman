@@ -79,7 +79,7 @@ function getHostHame(viteDevServer: ViteDevServer, configHost?: string) {
   )
 }
 
-export function getListenCallback(viteDevServer: ViteDevServer, serverUrl: string) {
+function getListenCallback(viteDevServer: ViteDevServer, serverUrl: string) {
   return () => {
     logger.info(`${styleText(["bold", "blue"], `▌ 🦋 moth-man.dev served at ${serverUrl} ▌`)}`)
 

@@ -669,6 +669,10 @@ video {
   max-height: 50vh;
 }
 
+.max-h-\[80vh\] {
+  max-height: 80vh;
+}
+
 .w-1\.5 {
   width: 0.375rem;
 }
@@ -1312,13 +1316,11 @@ blockquote.moth-markdown {
   margin-left: 0;
 }
 
-.moth-addon-modal-body {
+/* .moth-addon-modal-body {
   max-height: 80vh;
   overflow: auto;
-  -moz-tab-size: 2;
-    -o-tab-size: 2;
-       tab-size: 2;
-}
+  tab-size: 2;
+} */
 
 .moth-addon-modal-body ul {
   list-style: square;
